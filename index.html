@@ -8,20 +8,20 @@
 :root{
   --bg:#F3F5F9; --surface:#FFFFFF; --soft:#EEF1F7; --ink:#101828; --muted:#566074; --line:#DCE1EA;
   --brand:#22336B; --on:#FFFFFF; --ok:#0E7A47; --okbg:#E1F4E9; --bad:#B42A26; --badbg:#FBE7E5; --focus:#2563EB;
-  --ps:#0B8483; --pc:#2159D6; --pas:#6D3FD1; --pac:#C7275F; --pp:#A86400;
+  --ps:#0B8483; --pc:#2159D6; --pas:#6D3FD1; --pac:#C7275F; --pp:#A86400; --ppf:#3B7A2A;
   box-sizing:border-box; padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
 }
 @media (prefers-color-scheme: dark){
   :root:not([data-theme="light"]){
     --bg:#0D1320; --surface:#161E2E; --soft:#1E2840; --ink:#E9EDF5; --muted:#A0AABC; --line:#2B3650;
     --brand:#8FA6FF; --on:#0B1120; --ok:#5FD39A; --okbg:#12301F; --bad:#FF8B84; --badbg:#3A1917; --focus:#8FB2FF;
-    --ps:#3CC4C4; --pc:#7BA5FF; --pas:#B096FF; --pac:#FF80A8; --pp:#F2B84B;
+    --ps:#3CC4C4; --pc:#7BA5FF; --pas:#B096FF; --pac:#FF80A8; --pp:#F2B84B; --ppf:#6FCB6F;
   }
 }
 :root[data-theme="dark"]{
   --bg:#0D1320; --surface:#161E2E; --soft:#1E2840; --ink:#E9EDF5; --muted:#A0AABC; --line:#2B3650;
   --brand:#8FA6FF; --on:#0B1120; --ok:#5FD39A; --okbg:#12301F; --bad:#FF8B84; --badbg:#3A1917; --focus:#8FB2FF;
-  --ps:#3CC4C4; --pc:#7BA5FF; --pas:#B096FF; --pac:#FF80A8; --pp:#F2B84B;
+  --ps:#3CC4C4; --pc:#7BA5FF; --pas:#B096FF; --pac:#FF80A8; --pp:#F2B84B; --ppf:#6FCB6F;
 }
 html{scroll-padding-top:calc(env(safe-area-inset-top,0px) + 64px)}
 *,*::before,*::after{box-sizing:border-box}
@@ -177,6 +177,14 @@ kbd{font-family:inherit;font-size:.75rem;border:1px solid currentColor;border-ra
 /* Speaking */
 .qcard{background:var(--surface);border:3px solid var(--c,var(--brand));border-radius:16px;padding:22px;text-align:center;margin:12px 0}
 .qcard .qtxt{font-size:clamp(1.3rem,4vw,1.9rem);font-weight:700;margin:8px 0 12px}
+.playbtn{display:inline-flex;align-items:center;gap:6px;background:var(--c,var(--brand));color:var(--on);border:0;border-radius:99px;padding:5px 14px 5px 10px;font-weight:700;font-size:.9rem;vertical-align:middle}
+.playbtn:hover{filter:brightness(1.1)}
+.playbtn[disabled]{opacity:.55;cursor:wait}
+.snt{font-size:1.15rem;display:flex;flex-wrap:wrap;gap:6px 8px;align-items:center;margin:10px 0}
+.stress{font-weight:800;text-decoration:underline;text-decoration-color:var(--c,var(--brand));text-decoration-thickness:3px;text-underline-offset:3px}
+.weak{opacity:.6;font-size:.9em}
+.arrow{font-weight:800;color:var(--c,var(--brand))}
+.notebox{border-left:5px solid var(--pp);background:color-mix(in srgb,var(--pp) 10%,var(--surface));border-radius:0 10px 10px 0;padding:8px 14px;font-size:.92rem;margin:10px 0}
 .qcard .tagline{font-weight:700;color:var(--c,var(--brand))}
 details{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:10px 16px;margin-bottom:8px}
 summary{font-weight:700;cursor:pointer}
@@ -317,10 +325,26 @@ const T=[
   [`for + period of time`,`I've worked here <b>for two years</b>.`,`<i>for</i> = how long.`],
   [`since + starting point`,`I've worked here <b>since 2024</b>.`,`<i>since</i> = when it started.`],
   [`this week / month / year, today (not finished)`,`I've had three meetings <b>this week</b>.`,`The period is still open.`],
-  [`How long…? How many times…?`,`<b>How long</b> have you lived here?`,``]]}
+  [`How long…? How many times…?`,`<b>How long</b> have you lived here?`,``]]},
+{id:'ppf',name:'Past Perfect',tag:'The "past before the past"',
+ sum:'Use the Past Perfect to show that one past action happened before another past action or time. It puts one event further back than the rest of the story. It is the “this had already happened” tense.',
+ use:'An action finished before another past action or past time',formS:'had + past participle',
+ cl:'already, just, by the time, before, after, when (+ Past Simple), never … until',sample:'The meeting had already started when I arrived.',
+ form:[['Affirmative',`I / you / he / she / it / we / they <b>had worked</b>`],['Negative',`… <b>had not (hadn't) worked</b>`],['Question',`<b>Had</b> + subject + <b>worked</b>?`]],
+ uses:[['The earlier of two past actions (the later one is Past Simple)',[`The meeting <b>had</b> already <b>started</b> when I <b>arrived</b>.`,`She <b>had finished</b> the report before her boss <b>asked</b> for it.`]],
+  ['An action completed before a specific past time',[`By 2015, they <b>had moved</b> to a new office.`,`By the time I got there, the shop <b>had closed</b>.`]],
+  ['Background / the "story before the story"',[`He was tired because he <b>hadn't slept</b> well.`,`I didn't recognise her: I <b>had</b> never <b>met</b> her before.`]]],
+ tips:[`Form: <b>had + past participle</b>, the same for every subject — no changes for he/she/it.`,`Use it only when you are comparing <b>two past moments</b>. If there is only one past action, use the Past Simple instead.`,`With <i>when, after, before</i>, the Past Perfect makes the sequence clear: <i>When I <b>had finished</b> my homework, I <b>watched</b> TV</i> (finished first, then watched).`],
+ mis:[['When I arrived, the film already started.','When I arrived, the film had already started.',`Use the Past Perfect for the earlier action.`],['She had went home before we called.','She had gone home before we called.',`Use the past participle, not the Past Simple form.`],['I had seen that movie yesterday.','I saw that movie yesterday.',`With a single finished past time (<i>yesterday</i>), use the Past Simple.`]],
+ time:[[`already, just`,`The train <b>had already left</b> when we arrived.`,`Between <i>had</i> and the participle.`],
+  [`by the time`,`<b>By the time</b> I woke up, everyone had left.`,`Followed by a Past Simple clause.`],
+  [`before / after`,`I called her <b>after</b> she had left the office.`,``],
+  [`when (two past actions)`,`<b>When</b> I arrived, she had already gone.`,`Compare: <i>when</i> + Past Simple + Past Simple = one action after another.`],
+  [`never … until / by then`,`He had <b>never</b> travelled abroad <b>until</b> that year.`,``],
+  [`How long had… before…?`,`<b>How long had</b> they lived there <b>before</b> they moved?`,``]]}
 ];
 const TB={};T.forEach(t=>TB[t.id]=t);
-const WHY={ps:'a routine or a fact',pc:'an action happening now or around now',pas:'a finished action at a specific past time',pac:'an action in progress at a past moment',pp:'a past action connected to the present'};
+const WHY={ps:'a routine or a fact',pc:'an action happening now or around now',pas:'a finished action at a specific past time',pac:'an action in progress at a past moment',pp:'a past action connected to the present',ppf:'an action finished before another past action or time'};
 
 /* ---------- exercise engine ---------- */
 function gapify(str){
@@ -466,7 +490,7 @@ function subnav(host,entries,start){
 }
 
 /* ---------- tabs ---------- */
-const TABS=[['warm','Warm-up'],['guide','Guide'],['practice','Practice by tense'],['mixed','Mixed practice'],['games','Games'],['speak','Speaking']];
+const TABS=[['warm','Warm-up'],['guide','Guide'],['practice','Practice by tense'],['mixed','Mixed practice'],['games','Games'],['speak','Speaking'],['verbpat','Verb Patterns'],['pass_rs','Passive & Reported Speech'],['modpref','Advice, Preference & Wishes'],['cond','Conditionals'],['spoken','Spoken English']];
 const panels={};
 const tabBar=$('#tabs .wrap'),app=$('#app');
 TABS.forEach(([k,label])=>{
@@ -483,8 +507,8 @@ function go(k,scroll){
 /* ---------- timeline ---------- */
 (function(){
   const tl=$('#tl');
-  const order=['pac','pas','pp','NOW','ps','pc'];
-  const ex={pac:'I was chatting…',pas:'I started…',pp:'I have worked…',ps:'I work…',pc:'I am working…'};
+  const order=['ppf','pac','pas','pp','NOW','ps','pc'];
+  const ex={ppf:'I had worked…',pac:'I was chatting…',pas:'I started…',pp:'I have worked…',ps:'I work…',pc:'I am working…'};
   order.forEach(id=>{
     if(id==='NOW'){tl.appendChild(el('div','now','<span>NOW</span>'));return;}
     const b=el('button','tlc',`<b>${TB[id].name}</b><small>${ex[id]}</small>`);b.type='button';b.style.setProperty('--c',`var(--${id})`);
@@ -644,7 +668,23 @@ pp:{
  q:[[`I've lived here <u>for ten years</u>.`,`How long have you lived here?`],
   [`She has visited <u>three</u> countries.`,`How many countries has she visited?`],
   [`He has been to Mexico <u>twice</u>.`,`How many times has he been to Mexico?`]],
- err:[['I have seen him yesterday.','I saw him yesterday.'],['She has work here since 2020.','She has worked here since 2020.'],['We live in this city for six years.',`We have lived in this city for six years.|We've lived in this city for six years.`]]}
+ err:[['I have seen him yesterday.','I saw him yesterday.'],['She has work here since 2020.','She has worked here since 2020.'],['We live in this city for six years.',`We have lived in this city for six years.|We've lived in this city for six years.`]]},
+ppf:{
+ mc:[[`The film ___ <b>by the time</b> we got to the cinema.`,['already started','had already started','has already started'],1],
+  [`___ you ___ your homework <b>before</b> dinner?`,['Did / finish','Had / finished','Have / finished'],1],
+  [`She was tired because she ___ well <b>the night before</b>.`,[`didn't sleep`,`hadn't slept`,`hasn't slept`],1],
+  [`<b>When</b> I arrived, everyone ___ already.`,['left','had left','has left'],1],
+  [`I ___ never ___ sushi <b>until</b> that trip.`,['did / try','had / tried','have / tried'],1]],
+ gap:[`The train [[had already left|had left]] (already / leave) <b>by the time</b> we got to the station.`,
+  `[[Had]] you [[finished]] (finish) the report <b>before</b> your boss asked for it?`,
+  `He [[hadn't eaten|had not eaten]] (not / eat) anything <b>before</b> the meeting, so he was very hungry.`,
+  `<b>When</b> I opened the fridge, I realised someone [[had eaten]] (eat) all the cake.`,
+  `They [[had never visited|had never been to]] (<b>never</b> / visit) Europe <b>before</b> that summer.`,
+  `<b>By the time</b> the police arrived, the thief [[had disappeared]] (disappear).`],
+ q:[[`We had finished dinner <u>before the guests arrived</u>.`,`When had you finished dinner?|What had you finished before the guests arrived?`],
+  [`She had lived there <u>for ten years</u> before she moved.`,`How long had she lived there before she moved?`],
+  [`They had already left <u>when I called</u>.`,`Had they already left when you called?`]],
+ err:[['When I arrived, the film already started.','When I arrived, the film had already started.'],['She had went home before we called.','She had gone home before we called.'],['I had seen that movie yesterday.','I saw that movie yesterday.']]}
 };
 (function(){
   const p=panels.practice;
@@ -875,6 +915,508 @@ const TAGS={ps:'Present Simple',pc:'Present Continuous',pas:'Past Simple',pac:'P
   <details><summary>Mini interview</summary><ul><li>Student A is an interviewer, Student B is a candidate for a job or a scholarship.</li><li>A asks <b>one question in each of the five tenses</b>. B answers in full sentences with a time expression.</li><li>Swap roles. Who used the clues best?</li></ul></details>
   <details><summary>Find someone who…</summary><ul><li>Walk around the class and find someone who: <i>has visited another country · is learning something new these days · was sleeping at midnight last night · always drinks coffee in the morning · started a new hobby last year</i>.</li><li>Ask the right question for each tense.</li></ul></details>`;
   p.appendChild(ch);
+})();
+
+/* ---------- VERB PATTERNS (Group 1) ---------- */
+const VP={
+ ger:['enjoy','avoid','finish','suggest','admit','mind','consider','imagine','practise','risk','deny','quit','miss','postpone','delay','keep (on)','give up','feel like'],
+ inf:['want','decide','hope','plan','promise','agree','refuse','manage','offer','afford','learn','need','fail','seem','arrange','expect','pretend','tend'],
+ both:['start','begin','continue','like','love','hate','prefer'],
+ diff:[['stop','stop + gerund = end an activity; stop + infinitive = interrupt one thing to do another',['She <b>stopped smoking</b> (= she quit).','She <b>stopped to smoke</b> (= she stopped what she was doing in order to smoke).']],
+  ['remember','remember + gerund = recall a past action; remember + infinitive = not forget a future duty',['I <b>remember locking</b> the door (a memory of the past).','<b>Remember to lock</b> the door (don\'t forget, in the future).']],
+  ['forget','forget + gerund = forget something you did; forget + infinitive = forget a duty',['I\'ll never <b>forget meeting</b> her (a memory).','Don\'t <b>forget to call</b> me (a duty).']],
+  ['try','try + gerund = experiment, do as a test; try + infinitive = make an effort at something difficult',['<b>Try adding</b> some salt (as an experiment).','I <b>tried to open</b> the jar, but it was too hard (an effort).']],
+  ['regret','regret + gerund = be sorry about a past action; regret + infinitive = be sorry to give news (formal)',['I <b>regret telling</b> him the secret.','We <b>regret to inform</b> you that your flight is cancelled.']]]
+};
+function vpOverview(){
+  const n=el('div','');
+  n.innerHTML=`<div class="cluebox"><h3>The clue is the verb before it</h3>
+  <p>With tenses, the clue is a <b>time expression</b>. With infinitives and gerunds, the clue is the <b>first verb</b>: some verbs are always followed by <i>to + base verb</i>, others by <i>verb-ing</i>, and a few change meaning depending on which one you choose.</p></div>
+  <div class="grid2">
+   <div class="card"><h3>Verb + <i>-ing</i> (gerund)</h3><p>${VP.ger.map(v=>`<span class="pill" style="--c:var(--pc)">${v}</span>`).join(' ')}</p><p class="note" style="color:var(--muted)"><i>I <b>enjoy reading</b>. She <b>avoided answering</b> the question.</i></p></div>
+   <div class="card"><h3>Verb + <i>to</i> + base verb (infinitive)</h3><p>${VP.inf.map(v=>`<span class="pill" style="--c:var(--ps)">${v}</span>`).join(' ')}</p><p class="note" style="color:var(--muted)"><i>I <b>want to travel</b>. They <b>decided to leave</b> early.</i></p></div>
+  </div>
+  <div class="card"><h3>Both forms, same meaning</h3><p>${VP.both.map(v=>`<span class="pill" style="--c:var(--pp)">${v}</span>`).join(' ')}</p><p><i>It <b>started raining</b>.</i> = <i>It <b>started to rain</b>.</i></p></div>
+  <div class="card"><h3>Both forms, different meaning</h3><div class="scroll"><table class="tbl"><thead><tr><th>Verb</th><th>Rule</th><th>Examples</th></tr></thead><tbody>${VP.diff.map(d=>`<tr><td><b>${d[0]}</b></td><td>${d[1]}</td><td>${d[2].join('<br>')}</td></tr>`).join('')}</tbody></table></div></div>
+  <div class="card"><h3>After a preposition → always gerund</h3><p><i>I'm interested <b>in learning</b> Portuguese. She's good <b>at solving</b> problems. Thank you <b>for coming</b>.</i></p></div>`;
+  return n;
+}
+function vpUsedTo(){
+  const n=el('div','');
+  n.innerHTML=`<div class="gd" style="--c:var(--pas)"><header class="gdh" style="background:var(--pas)"><h3>used to · be used to · get used to</h3><p>Three similar phrases, three different meanings</p></header><div class="gdb">
+  <p class="lead">These look alike but answer different questions: <b>did it happen regularly in the past?</b> vs. <b>is it normal/familiar for you now?</b></p>
+  <div class="scroll"><table class="tbl"><thead><tr><th>Phrase</th><th>Meaning</th><th>Form</th><th>Example</th></tr></thead><tbody>
+   <tr><td><b>used to</b> + base verb</td><td>a past habit or state that is not true anymore</td><td>subject + used to + verb</td><td>I <b>used to smoke</b>, but I quit two years ago.</td></tr>
+   <tr><td><b>be used to</b> + gerund/noun</td><td>something is familiar or normal for you now</td><td>be (am/is/are/was/were) + used to + -ing/noun</td><td>I <b>am used to waking up</b> early; I've done it for years.</td></tr>
+   <tr><td><b>get used to</b> + gerund/noun</td><td>the process of becoming familiar with something (a change)</td><td>get + used to + -ing/noun</td><td>I'<b>m getting used to living</b> in a new city.</td></tr>
+  </tbody></table></div>
+  <h4>Remember</h4><ul class="tips"><li><i>used to</i> (habit) only exists in the <b>past</b>: there is no present form.</li><li><i>be/get used to</i> can be in <b>any tense</b> (was used to, will be used to, has got used to…) because <i>used to</i> here is an adjective meaning “familiar”.</li><li>After <i>be/get used to</i>, use a <b>gerund or noun</b>, never a base verb: <i>I'm used to <b>working</b> late</i> (not <i>work</i>).</li></ul>
+  </div></div>`;
+  return n;
+}
+(function(){
+  const p=panels.verbpat;
+  p.innerHTML=`<h2>Verb Patterns</h2><p class="lead">Some verbs need <i>to + verb</i>, others need <i>verb-ing</i>. Learn the verb, not just the rule.</p>`;
+  const entries=[{label:'Overview',node:vpOverview()},{label:'used to / be used to / get used to',color:'pas',node:vpUsedTo()}];
+  const nv=subnav(p,entries,0);
+  const prac=el('div','tp');
+  prac.appendChild(block('A. Infinitive or gerund?','Choose the correct form.','mc',[
+   [`She enjoys ___ (read) before bed.`,['read','to read','reading'],2],
+   [`They decided ___ (move) to another city.`,['move','to move','moving'],1],
+   [`I can't help ___ (laugh) when he tells jokes.`,['laugh','to laugh','laughing'],2],
+   [`We hope ___ (see) you soon.`,['see','to see','seeing'],1],
+   [`He suggested ___ (go) to the new restaurant.`,['go','to go','going'],2],
+   [`I'm thinking of ___ (study) abroad next year.`,['study','to study','studying'],2]]));
+  prac.appendChild(block('B. Complete with the correct form','Type the correct gerund or infinitive.','gap',[
+   `She avoids [[eating]] (eat) sugar.`,
+   `We managed [[to finish|to finish]] (finish) the project on time.`,
+   `He admitted [[breaking]] (break) the window.`,
+   `They promised [[to help|to help]] (help) us tomorrow.`,
+   `I'm not used to [[getting up|getting up]] (get up) so early.`,
+   `She used to [[play]] (play) the piano when she was a child.`]));
+  prac.appendChild(block('C. Error hunt','Each sentence has one mistake. Rewrite it correctly.','err',[
+   ['I enjoy to cook on weekends.','I enjoy cooking on weekends.'],
+   ['She is used to work long hours.','She is used to working long hours.'],
+   ['They decided moving to Bogotá.','They decided to move to Bogotá.'],
+   ['He used to plays football every day.','He used to play football every day.'],
+   ['We are looking forward to see you.','We are looking forward to seeing you.']]));
+  p.appendChild(el('h3','','Practice'));p.appendChild(prac);
+  const speak=el('div','card',`<h3>Speaking</h3><ul class="tips">
+   <li>What do you enjoy doing in your free time?</li>
+   <li>What did you use to do as a child that you don't do anymore?</li>
+   <li>What are you getting used to these days (a new job, a new routine, a new city)?</li>
+   <li>What have you always wanted to learn to do?</li></ul>`);
+  p.appendChild(speak);
+})();
+
+/* ---------- PASSIVE & REPORTED SPEECH (Group 2) ---------- */
+function pvGuide(){
+  const n=el('div','');
+  n.innerHTML=`<div class="cluebox"><h3>Same idea, new subject</h3><p>The passive moves the <b>focus from who does the action to what receives it</b>. Form: <b>be (in the right tense) + past participle</b>. Add <b>by + agent</b> only when the agent is important.</p></div>
+  <div class="scroll"><table class="tbl"><thead><tr><th>Tense</th><th>Active</th><th>Passive</th></tr></thead><tbody>
+   <tr><td>Present Simple</td><td>They <b>clean</b> the office every day.</td><td>The office <b>is cleaned</b> every day.</td></tr>
+   <tr><td>Present Continuous</td><td>They <b>are painting</b> the wall.</td><td>The wall <b>is being painted</b>.</td></tr>
+   <tr><td>Past Simple</td><td>Someone <b>stole</b> my bike.</td><td>My bike <b>was stolen</b>.</td></tr>
+   <tr><td>Past Continuous</td><td>They <b>were building</b> the bridge.</td><td>The bridge <b>was being built</b>.</td></tr>
+   <tr><td>Present Perfect</td><td>They <b>have cancelled</b> the flight.</td><td>The flight <b>has been cancelled</b>.</td></tr>
+   <tr><td>Future (will)</td><td>They <b>will announce</b> the results.</td><td>The results <b>will be announced</b>.</td></tr>
+   <tr><td>Modal (can/must…)</td><td>You <b>must submit</b> the form.</td><td>The form <b>must be submitted</b>.</td></tr>
+  </tbody></table></div>
+  <h4>When to use the passive</h4><ul class="tips"><li>The agent is <b>unknown, unimportant or obvious</b>: <i>My car was stolen last night.</i></li><li>You want to focus on the <b>action or the result</b>, common in news, reports, and science: <i>The bridge was completed in 2020.</i></li><li>The agent matters: add <b>by + agent</b>: <i>The novel was written <b>by García Márquez</b>.</i></li></ul>
+  <h4>Common mistakes</h4><div class="scroll"><table class="tbl mis"><thead><tr><th>Incorrect</th><th>Correct</th><th>Why?</th></tr></thead><tbody>
+   <tr><td>The letter was wrote yesterday.</td><td>The letter was written yesterday.</td><td>Use the past participle, not the past simple.</td></tr>
+   <tr><td>The report is finish now.</td><td>The report is being finished now.</td><td>Continuous passive needs <i>being + participle</i>.</td></tr>
+   <tr><td>The cake was made for she.</td><td>The cake was made by her.</td><td>Use an object pronoun after <i>by</i>.</td></tr>
+  </tbody></table></div>`;
+  return n;
+}
+function rsGuide(){
+  const n=el('div','');
+  n.innerHTML=`<div class="cluebox"><h3>Move everything one step into the past</h3><p>When we report what someone said, the reporting verb (<i>said, told</i>) is usually in the past, so the original tense usually moves back one step — this is called <b>backshift</b>.</p></div>
+  <div class="scroll"><table class="tbl"><thead><tr><th>Direct speech</th><th>Reported speech</th></tr></thead><tbody>
+   <tr><td>Present Simple: "I <b>work</b> here."</td><td>Past Simple: She said (that) she <b>worked</b> there.</td></tr>
+   <tr><td>Present Continuous: "I<b>'m working</b>."</td><td>Past Continuous: She said she <b>was working</b>.</td></tr>
+   <tr><td>Past Simple: "I <b>finished</b>."</td><td>Past Perfect: She said she <b>had finished</b>.</td></tr>
+   <tr><td>Present Perfect: "I<b>'ve seen</b> it."</td><td>Past Perfect: She said she <b>had seen</b> it.</td></tr>
+   <tr><td>will: "I<b>'ll call</b> you."</td><td>would: She said she <b>would call</b> me.</td></tr>
+   <tr><td>can: "I <b>can help</b>."</td><td>could: She said she <b>could help</b>.</td></tr>
+  </tbody></table></div>
+  <h4>Time and place words also change</h4><div class="scroll"><table class="tbl"><thead><tr><th>Direct</th><th>Reported</th></tr></thead><tbody>
+   <tr><td>now</td><td>then / at that moment</td></tr><tr><td>today</td><td>that day</td></tr><tr><td>tomorrow</td><td>the next/following day</td></tr>
+   <tr><td>yesterday</td><td>the day before / the previous day</td></tr><tr><td>this</td><td>that</td></tr><tr><td>here</td><td>there</td></tr>
+  </tbody></table></div>
+  <h4>Questions and commands</h4><ul class="tips">
+   <li><b>Yes/no questions</b>: add <i>if</i>/<i>whether</i>, no auxiliary, statement word order: "Do you like it?" → She asked <b>if</b> I <b>liked</b> it.</li>
+   <li><b>Wh- questions</b>: keep the question word, no auxiliary: "Where do you live?" → He asked <b>where</b> I <b>lived</b>.</li>
+   <li><b>Commands/requests</b>: <i>tell/ask someone (not) to + infinitive</i>: "Close the door." → She told me <b>to close</b> the door.</li></ul>`;
+  return n;
+}
+(function(){
+  const p=panels.pass_rs;
+  p.innerHTML=`<h2>Passive &amp; Reported Speech</h2><p class="lead">Two ways of shifting focus: from the agent to the action (passive), and from someone else's exact words to your report of them (reported speech).</p>`;
+  subnav(p,[{label:'Passive Voice',node:pvGuide()},{label:'Reported Speech',node:rsGuide()}],0);
+  const prac=el('div','tp');
+  p.appendChild(el('h3','','Practice'));
+  prac.appendChild(block('A. Active or passive?','Choose the correct sentence.','mc',[
+   [`The window ___ last night.`,['broke','was broken','was breaking'],1],
+   [`They ___ the new hospital next year.`,['will open','will be opened','opened'],1],
+   [`My phone ___ while I was at the gym.`,['stole','was stolen','has stolen'],1],
+   [`This song ___ by a famous singer.`,['wrote','was written','has write'],1],
+   [`The reports ___ every Friday.`,['send','are sent','is sent'],1]]));
+  prac.appendChild(block('B. Complete: passive form','Write the verb in the correct passive form.','gap',[
+   `The email [[was sent]] (send) yesterday.`,
+   `Coffee [[is grown]] (grow) in many countries.`,
+   `The building [[is being renovated]] (renovate) this month.`,
+   `The decision [[will be made]] (make) tomorrow.`,
+   `The documents [[have been checked]] (check) already.`]));
+  prac.appendChild(block('C. Reported speech: rewrite the sentence','Report what the person said.','q',[
+   [`Ana said, "I am tired."`,`Ana said (that) she was tired.`],
+   [`Carlos said, "I will call you tomorrow."`,`Carlos said (that) he would call me the next day.`],
+   [`She asked, "Do you live here?"`,`She asked if I lived there.|She asked whether I lived there.`],
+   [`He asked, "Where did you go?"`,`He asked where I had gone.|He asked me where I had gone.`],
+   [`The teacher said, "Close your books."`,`The teacher told us to close our books.|The teacher told me to close my books.`]]));
+  prac.appendChild(block('D. Error hunt','Each sentence has one mistake. Rewrite it correctly.','err',[
+   ['The cake was make by my mother.','The cake was made by my mother.'],
+   ['She said that she is happy.','She said that she was happy.'],
+   ['He asked me where did I live.','He asked me where I lived.'],
+   ['The car is fixing right now.','The car is being fixed right now.'],
+   ['They told to me to wait.','They told me to wait.']]));
+  p.appendChild(prac);
+  p.appendChild(el('div','card',`<h3>Speaking</h3><ul class="tips">
+   <li>Think of a rule at your school or job. How is it usually expressed in the passive? (e.g. <i>Phones must not be used in class.</i>)</li>
+   <li>Tell your partner three things someone told you this week. Report them: "My boss told me that…"</li>
+   <li>Describe a product and how it is made, using the passive (<i>it is grown, it is packaged, it is shipped…</i>).</li>
+   <li>Ask your partner a question, then report it to a third person: "I asked her if/what…"</li></ul>`));
+})();
+
+/* ---------- ADVICE, PREFERENCE & WISHES (Group 3) ---------- */
+function mpAdvicePref(){
+  const n=el('div','');
+  n.innerHTML=`<div class="cluebox"><h3>Strong advice and preferences</h3><p>These phrases don't follow normal verb rules — each one has its own fixed pattern. Learn the <b>pattern</b>, not just the meaning.</p></div>
+  <div class="scroll"><table class="tbl"><thead><tr><th>Phrase</th><th>Meaning</th><th>Pattern</th><th>Example</th></tr></thead><tbody>
+   <tr><td><b>had better (not)</b></td><td>strong advice, often with a warning of a bad result if not followed</td><td>subject + had better (not) + base verb</td><td>You <b>had better call</b> her now, or she'll be upset. / You'<b>d better not be</b> late.</td></tr>
+   <tr><td><b>would rather</b></td><td>a preference between two actions</td><td>would rather + base verb (+ than + base verb)</td><td>I<b>'d rather stay</b> home than go out tonight.</td></tr>
+   <tr><td><b>would rather + subject</b></td><td>preference about what someone else does</td><td>would rather + subject + past simple (with present/future meaning)</td><td>I<b>'d rather you called</b> me tomorrow.</td></tr>
+   <tr><td><b>would prefer</b></td><td>a more formal, general preference</td><td>would prefer + to + verb (+ rather than + base verb)</td><td>I<b>'d prefer to travel</b> by train rather than fly.</td></tr>
+  </tbody></table></div>
+  <h4>Remember</h4><ul class="tips"><li><i>had better</i> is about <b>this specific situation</b>, not a general habit — and it sounds like a warning, so use it carefully with people you don't know well.</li><li>After <i>had better</i> and <i>would rather</i> (same subject), always use the <b>base verb</b>, never <i>to</i>.</li><li>The contraction <i>'d</i> can mean <b>had</b> (had better) or <b>would</b> (would rather/prefer) — check the verb that follows to know which one.</li></ul>`;
+  return n;
+}
+function mpUsedWould(){
+  const n=el('div','');
+  n.innerHTML=`<div class="cluebox"><h3>Two ways to talk about past habits</h3><p><i>used to</i> and <i>would</i> can both describe repeated past actions, but only one of them also works for past states.</p></div>
+  <div class="scroll"><table class="tbl"><thead><tr><th></th><th>used to</th><th>would</th></tr></thead><tbody>
+   <tr><td>Repeated past actions</td><td>✔ <i>We used to play outside every day.</i></td><td>✔ <i>We would play outside every day.</i></td></tr>
+   <tr><td>Past states (be, have, like, know…)</td><td>✔ <i>I used to live in Cali.</i></td><td>✘ <i>I would live in Cali.</i> (not correct)</td></tr>
+  </tbody></table></div>
+  <p><b>Rule:</b> use <i>would</i> only for repeated actions, and only when the past time is already clear from context (often after <i>used to</i> sets the scene). Use <i>used to</i> for states, or when you're not sure.</p>
+  <p class="lead" style="margin-top:14px"><i>When I was a child, I <b>used to</b> spend summers at my grandma's house. We <b>would</b> wake up early, <b>would</b> walk to the river, and <b>would</b> come back for lunch.</i></p>`;
+  return n;
+}
+function mpWishHope(){
+  const n=el('div','');
+  n.innerHTML=`<div class="cluebox"><h3>wish and hope: both about something you want, but grammatically very different</h3><p><i>hope</i> is about things that are <b>possible</b>; <i>wish</i> is often about things that are <b>unlikely, impossible, or not true</b> — and it uses a special "distanced" tense.</p></div>
+  <div class="scroll"><table class="tbl"><thead><tr><th>Use</th><th>Pattern</th><th>Example</th></tr></thead><tbody>
+   <tr><td><b>hope</b> — a real possibility</td><td>hope + present/future/that-clause</td><td>I <b>hope</b> it doesn't rain tomorrow. I <b>hope</b> you feel better soon.</td></tr>
+   <tr><td><b>wish</b> + Past Simple — a present situation I want to be different</td><td>wish + subject + past simple</td><td>I <b>wish</b> I <b>had</b> more free time. (= I don't have much now)</td></tr>
+   <tr><td><b>wish</b> + Past Perfect — regret about the past</td><td>wish + subject + had + participle</td><td>I <b>wish</b> I <b>had studied</b> harder. (= I didn't study hard)</td></tr>
+   <tr><td><b>wish</b> + would — annoyance about someone's behaviour</td><td>wish + subject + would + base verb</td><td>I <b>wish</b> you <b>would stop</b> interrupting me.</td></tr>
+   <tr><td><b>if only</b></td><td>same patterns as wish, more emphatic</td><td><b>If only</b> I had listened to her advice!</td></tr>
+  </tbody></table></div>
+  <h4>Common mistake</h4><p class="bad">I wish I <s>have</s> more time. → I wish I <b>had</b> more time.</p>`;
+  return n;
+}
+(function(){
+  const p=panels.modpref;
+  p.innerHTML=`<h2>Advice, Preference &amp; Wishes</h2><p class="lead">Fixed expressions that don't follow the usual rules — the pattern after each one is the real challenge.</p>`;
+  subnav(p,[{label:'had better / would rather / would prefer',node:mpAdvicePref()},{label:'used to vs. would',node:mpUsedWould()},{label:'wish / hope / if only',node:mpWishHope()}],0);
+  const prac=el('div','tp');
+  p.appendChild(el('h3','','Practice'));
+  prac.appendChild(block('A. Choose the correct option','','mc',[
+   [`You ___ hurry, or you'll miss the bus.`,['had better','had better to','would rather'],0],
+   [`I'd rather ___ home tonight than go to the party.`,['stay','to stay','staying'],0],
+   [`When I was young, we ___ visit our cousins every summer. (habit)`,['would','would be','used to be'],0],
+   [`I wish I ___ more languages. (present regret)`,['know','knew','have known'],1],
+   [`I ___ you have a great trip!`,['wish','hope','would rather'],1]]));
+  prac.appendChild(block('B. Complete the sentence','Type the missing words.','gap',[
+   `You [[had better call|'d better call]] the doctor; that cough sounds serious.`,
+   `I'd rather [[watch]] (watch) a movie than go out.`,
+   `When she was a teenager, she [[used to write|would write]] (write) in a diary every night.`,
+   `I wish I [[had]] (have) a bigger apartment.`,
+   `If only he [[had listened]] (listen) to us! Now it's too late.`]));
+  prac.appendChild(block('C. Error hunt','Each sentence has one mistake. Rewrite it correctly.','err',[
+   ['You had better to leave now.','You had better leave now.'],
+   [`I'd rather to stay here.`,`I'd rather stay here.`],
+   ['I wish I have more money.','I wish I had more money.'],
+   ['When I was little, I would be very shy.','When I was little, I used to be very shy.'],
+   [`I hope you had a great time yesterday, will you?`,`I hope you had a great time yesterday.`]]));
+  p.appendChild(prac);
+  p.appendChild(el('div','card',`<h3>Speaking</h3><ul class="tips">
+   <li>Give a classmate some "had better" advice about something happening this week.</li>
+   <li>Would you rather work from home or in an office? Would you rather travel alone or with friends? Explain.</li>
+   <li>What did you use to do as a child that you don't do anymore? What would you do every summer?</li>
+   <li>What do you wish were different about your daily routine? Is there anything you wish you had done differently in the past?</li></ul>`));
+})();
+
+/* ---------- CONDITIONALS (Group 4) ---------- */
+function condTypes(){
+  const n=el('div','');
+  n.innerHTML=`<div class="cluebox"><h3>if + clue about how real or possible the situation is</h3><p>Every conditional makes a link between a condition (<i>if…</i>) and a result. The <b>verb forms</b> tell you how real, likely, or possible that situation is — from a fact, to a future plan, to something imaginary, to something that's already impossible because it's in the past.</p></div>
+  <div class="scroll"><table class="tbl"><thead><tr><th>Type</th><th>Use</th><th>Form (if-clause / result)</th><th>Example</th></tr></thead><tbody>
+   <tr><td><b>Zero</b></td><td>general truths, facts, things that always happen</td><td>if + present simple / present simple</td><td>If you <b>heat</b> ice, it <b>melts</b>.</td></tr>
+   <tr><td><b>First</b></td><td>a real, possible future situation</td><td>if + present simple / will + base verb</td><td>If it <b>rains</b>, we<b>'ll stay</b> home.</td></tr>
+   <tr><td><b>Second</b></td><td>an unlikely or imaginary present/future situation</td><td>if + past simple / would + base verb</td><td>If I <b>won</b> the lottery, I <b>would travel</b> the world.</td></tr>
+   <tr><td><b>Third</b></td><td>an impossible past situation (it didn't happen) and its imagined result</td><td>if + past perfect / would have + participle</td><td>If I <b>had studied</b> harder, I <b>would have passed</b> the exam.</td></tr>
+   <tr><td><b>Mixed</b></td><td>a past condition with a present result, or a present condition with a past result</td><td>if + past perfect / would + base verb (or reverse)</td><td>If I <b>had taken</b> that job, I <b>would be</b> richer now.</td></tr>
+  </tbody></table></div>
+  <h4>Remember</h4><ul class="tips"><li>Never use <i>will</i> or <i>would</i> in the <b>if-clause</b> itself: <i>If it <b>rains</b></i> (not <i>if it will rain</i>).</li><li>The comma is used when <i>if</i> comes first: <i>If I <b>see</b> her, I<b>'ll tell</b> her.</i> No comma when the result comes first: <i>I<b>'ll tell</b> her if I <b>see</b> her.</i></li><li>In second/third conditionals, <i>were</i> is preferred for all subjects in formal style: <i>If I <b>were</b> you…</i></li></ul>`;
+  return n;
+}
+function condWords(){
+  const n=el('div','');
+  n.innerHTML=`<div class="cluebox"><h3>Other ways to say "if"</h3><p>These words replace or add to <i>if</i>, each with a slightly different meaning. They usually follow the same verb-form patterns as the conditional they're used in.</p></div>
+  <div class="scroll"><table class="tbl"><thead><tr><th>Word / phrase</th><th>Meaning</th><th>Example</th></tr></thead><tbody>
+   <tr><td><b>unless</b></td><td>if…not / except if</td><td>We won't go <b>unless</b> it stops raining. (= if it doesn't stop)</td></tr>
+   <tr><td><b>as long as / so long as</b></td><td>on the condition that</td><td>You can borrow the car <b>as long as</b> you fill up the tank.</td></tr>
+   <tr><td><b>provided that / providing that</b></td><td>only if (more formal)</td><td>You'll get the job, <b>provided that</b> you pass the interview.</td></tr>
+   <tr><td><b>in case</b></td><td>because something might happen (a precaution, not a condition for the result)</td><td>Take an umbrella <b>in case</b> it rains. (= as a precaution)</td></tr>
+   <tr><td><b>even if</b></td><td>the result is the same, whether or not the condition happens</td><td><b>Even if</b> you apologise, she won't forgive you.</td></tr>
+  </tbody></table></div>
+  <h4>Common mistake</h4><p><span class="bad">Take an umbrella if it rains.</span> vs. <b>Take an umbrella in case it rains.</b> — with <i>if</i>, you take it only after it starts raining; with <i>in case</i>, you take it now, as a precaution, before you know.</p>`;
+  return n;
+}
+(function(){
+  const p=panels.cond;
+  p.innerHTML=`<h2>Conditionals</h2><p class="lead">If this happens, then that happens — but how sure are you? The verb forms carry that meaning.</p>`;
+  subnav(p,[{label:'The 4 (+ mixed) conditionals',node:condTypes()},{label:'unless / as long as / provided that / in case / even if',node:condWords()}],0);
+  const prac=el('div','tp');
+  p.appendChild(el('h3','','Practice'));
+  prac.appendChild(block('A. Which conditional?','Choose the correct verb forms.','mc',[
+   [`If you ___ water to 100°C, it boils.`,['heat','will heat','had heated'],0],
+   [`If I ___ time tomorrow, I'll help you.`,['have','had','have had'],0],
+   [`If I ___ you, I would apologise.`,['am','were','had been'],1],
+   [`If she ___ earlier, she wouldn't have missed the train.`,['left','had left','would leave'],1],
+   [`I won't go ___ you come with me.`,['if','unless','in case'],1],
+   [`Take your phone ___ we need to contact you.`,['unless','provided that','in case'],2]]));
+  prac.appendChild(block('B. Complete the conditional','Write the correct verb form.','gap',[
+   `If it [[rains]] (rain) tomorrow, we [[will cancel|'ll cancel]] (cancel) the picnic.`,
+   `If I [[had]] (have) more money, I [[would buy|'d buy]] (buy) a new car.`,
+   `If she [[had told]] (tell) me, I [[would have helped|would have helped]] (help) her.`,
+   `Ice [[melts]] (melt) if you [[heat]] (heat) it.`,
+   `You can stay here as long as you [[keep]] (keep) quiet.`]));
+  prac.appendChild(block('C. Error hunt','Each sentence has one mistake. Rewrite it correctly.','err',[
+   ['If it will rain, we will stay home.','If it rains, we will stay home.'],
+   ['If I was rich, I will travel the world.','If I were rich, I would travel the world.'],
+   ["If she had studied, she would pass the exam.","If she had studied, she would have passed the exam."],
+   ['I will call you if I will arrive late.','I will call you if I arrive late.'],
+   ["We won't finish on time if you don't unless help us.","We won't finish on time unless you help us."]]));
+  p.appendChild(prac);
+  p.appendChild(el('div','card',`<h3>Speaking</h3><ul class="tips">
+   <li>What would you do if you won a scholarship to study abroad?</li>
+   <li>What will you do this weekend if the weather is good? What will you do if it isn't?</li>
+   <li>Think of a mistake or a missed opportunity: what would you have done differently?</li>
+   <li>Finish these: "I'll help you as long as…", "I won't go unless…", "Take a jacket in case…"</li></ul>`));
+})();
+
+/* ---------- SPOKEN ENGLISH (Sentence Stress + Intonation) ---------- */
+let VOICES=[];
+function loadVoices(){VOICES=window.speechSynthesis?window.speechSynthesis.getVoices():[];}
+if(window.speechSynthesis){loadVoices();window.speechSynthesis.onvoiceschanged=loadVoices;}
+function speak(text,opt){
+  if(!window.speechSynthesis){alert('Sorry, your browser does not support built-in text-to-speech.');return;}
+  window.speechSynthesis.cancel();
+  const u=new SpeechSynthesisUtterance(text.replace(/[↗↘•]/g,''));
+  u.lang='en-US';u.rate=(opt&&opt.rate)||0.92;u.pitch=1;
+  const v=VOICES.find(v=>v.lang&&v.lang.startsWith('en'));if(v)u.voice=v;
+  window.speechSynthesis.speak(u);
+}
+function playBtn(text,label){
+  const b=el('button','playbtn',`▶ ${label||'Play'}`);b.type='button';
+  b.addEventListener('click',()=>{speak(text);b.disabled=true;setTimeout(()=>b.disabled=false,900);});
+  return b;
+}
+function sentRow(html,full,label){
+  const row=el('div','snt');row.innerHTML=html+' ';row.appendChild(playBtn(full,label));return row;
+}
+function spokenOverview(){
+  const n=el('div','');
+  n.innerHTML=`<div class="cluebox"><h3>Meaning lives in the music, not just the words</h3><p>Two people can say the exact same words and mean very different things, depending on which word they stress and whether their voice rises or falls. This section is about <b>how</b> English sounds, not just what it says.</p></div>
+  <div class="notebox">🔊 <b>About the audio:</b> the "Play" buttons use your browser's built-in text-to-speech. It's useful for hearing the general pattern (which word is louder, whether the voice goes up or down), but it's a synthetic voice, not a real speaker — use it as a guide, not a perfect model.</div>`;
+  return n;
+}
+const STRESS={
+ content:['nouns','main verbs','adjectives','adverbs','question words','negatives (not, don\'t, can\'t)'],
+ weak:['articles (a, an, the)','prepositions (in, on, at)','pronouns (I, you, it)','auxiliary verbs (is, do, have)','conjunctions (and, but)']
+};
+function stressGuide(){
+  const n=el('div','');
+  n.innerHTML=`<div class="gd" style="--c:var(--ps)"><header class="gdh" style="background:var(--ps)"><h3>Sentence Stress</h3><p>Not every word gets equal weight</p></header><div class="gdb">
+  <p class="lead">English is a <b>stress-timed</b> language: the words that carry the most meaning are said louder, longer, and clearer. The small "grammar" words are squeezed in quickly and quietly between them.</p>
+  <div class="grid2">
+   <div class="card"><h3>Usually stressed (content words)</h3><p>${STRESS.content.map(v=>`<span class="pill" style="--c:var(--ps)">${v}</span>`).join(' ')}</p></div>
+   <div class="card"><h3>Usually unstressed (function words)</h3><p>${STRESS.weak.map(v=>`<span class="pill" style="--c:var(--pas)">${v}</span>`).join(' ')}</p></div>
+  </div>
+  <h4>Listen: same words, different stress, different focus</h4>
+  <div id="stress-ex"></div>
+  <h4>Remember</h4><ul class="tips"><li>Stressed words are a little <b>louder, longer and clearer</b> — the vowel is full.</li><li>Unstressed words often <b>shrink</b>: <i>can</i> sounds like <i>kən</i>, <i>to</i> like <i>tə</i>.</li><li>Changing which word you stress can change the <b>whole meaning</b> of a sentence.</li></ul>
+  </div></div>`;
+  const host=$('#stress-ex',n);
+  const rows=[
+   ['I <span class="stress">didn\'t</span> say she stole the money.','I didn\'t say she stole the money.','(= someone else said it)'],
+   ['I didn\'t <span class="stress">say</span> she stole the money.','I didn\'t say she stole the money.','(= I only implied it)'],
+   ['I didn\'t say <span class="stress">she</span> stole the money.','I didn\'t say she stole the money.','(= maybe someone else stole it)'],
+   ['I didn\'t say she <span class="stress">stole</span> the money.','I didn\'t say she stole the money.','(= maybe she borrowed it)']];
+  rows.forEach(r=>{const row=sentRow(r[0],r[1]);row.appendChild(el('span','','&nbsp;'+r[2]));host.appendChild(row);});
+  return n;
+}
+function intonationGuide(){
+  const n=el('div','');
+  n.innerHTML=`<div class="gd" style="--c:var(--pc)"><header class="gdh" style="background:var(--pc)"><h3>Intonation</h3><p>The rise and fall of your voice</p></header><div class="gdb">
+  <p class="lead">Intonation is the melody of a sentence — whether your voice goes <b>↗ up</b> or <b>↘ down</b> at the end. It signals whether you're finished, asking, listing, or unsure.</p>
+  <div class="scroll"><table class="tbl"><thead><tr><th>Pattern</th><th>Use</th><th>Example</th></tr></thead><tbody>
+   <tr><td><b>Falling ↘</b></td><td>Statements, wh- questions, commands — sounds finished and certain</td><td>Where do you live<b>↘</b>?</td></tr>
+   <tr><td><b>Rising ↗</b></td><td>Yes/no questions, checking, sounding polite or unsure</td><td>Do you live here<b>↗</b>?</td></tr>
+   <tr><td><b>Rising then falling</b></td><td>Lists: rising on each item, falling on the last</td><td>I bought apples↗, bread↗, and milk<b>↘</b>.</td></tr>
+   <tr><td><b>Rising ↗ (tag, checking)</b></td><td>Tag question when you're not sure of the answer</td><td>You're coming, aren't you<b>↗</b>?</td></tr>
+   <tr><td><b>Falling ↘ (tag, confirming)</b></td><td>Tag question when you're almost sure and just confirming</td><td>Nice day, isn't it<b>↘</b>?</td></tr>
+  </tbody></table></div>
+  <h4>Listen: rising vs. falling</h4><div id="into-ex"></div>
+  </div></div>`;
+  const host=$('#into-ex',n);
+  const rows=[
+   [`"Coffee<span class="arrow">↗</span>?" (offering, or a yes/no question)`,'Coffee?','offering / yes-no question'],
+   [`"Where's the coffee<span class="arrow">↘</span>?" (a normal wh- question)`,'Where is the coffee?','normal wh- question'],
+   [`"You like it<span class="arrow">↗</span>?" (surprised, checking)`,'You like it?','checking / surprised'],
+   [`"It's over there<span class="arrow">↘</span>." (a plain statement)`,'It\'s over there.','plain statement']];
+  rows.forEach(r=>{const row=sentRow(r[0],r[1]);host.appendChild(row);});
+  return n;
+}
+function trapsGuide(){
+  const n=el('div','');
+  n.innerHTML=`<div class="gd" style="--c:var(--pac)"><header class="gdh" style="background:var(--pac)"><h3>Pronunciation Traps</h3><p>Common problem sounds for Spanish speakers</p></header><div class="gdb">
+  <p class="lead">These are the sounds and patterns that most often cause confusion — either because a sound doesn't exist in Spanish, or because English spelling doesn't match pronunciation the way Spanish does.</p>
+
+  <h4>1. Vowel length: short vs. long</h4>
+  <p>Spanish vowels don't change length the way English ones do. Mixing these up can completely change the word.</p>
+  <div id="trap-vowels"></div>
+
+  <h4>2. b/v and other consonant confusions</h4>
+  <p>In Spanish, <i>b</i> and <i>v</i> sound the same. In English, they're different: <b>v</b> is made with your top teeth on your bottom lip.</p>
+  <div id="trap-bv"></div>
+
+  <h4>3. The "th" sounds (θ / ð)</h4>
+  <p>These don't exist in Spanish, so they often become <i>s, d,</i> or <i>t</i>. Put your tongue between your teeth.</p>
+  <div id="trap-th"></div>
+
+  <h4>4. Silent letters</h4>
+  <div class="scroll"><table class="tbl"><thead><tr><th>Word</th><th>Silent letter</th></tr></thead><tbody>
+   <tr><td>kn<b>o</b>w, kn<b>i</b>fe</td><td>the <b>k</b></td></tr>
+   <tr><td>com<b>b</b>, clim<b>b</b></td><td>the <b>b</b></td></tr>
+   <tr><td>is<b>l</b>and, is<b>l</b>e</td><td>the <b>l</b></td></tr>
+   <tr><td>lis<b>t</b>en, cas<b>t</b>le</td><td>the <b>t</b></td></tr>
+   <tr><td>hon<b>e</b>st, h<b>o</b>ur</td><td>the <b>h</b></td></tr>
+  </tbody></table></div>
+
+  <h4>5. -ed endings: three sounds, not one</h4>
+  <p>The past tense ending <i>-ed</i> is pronounced three different ways, depending on the last sound of the base verb.</p>
+  <div class="scroll"><table class="tbl"><thead><tr><th>Sound</th><th>After which sounds?</th><th>Examples</th></tr></thead><tbody>
+   <tr><td>/t/</td><td>after unvoiced sounds (p, k, s, sh, ch, f)</td><td>watch<b>ed</b>, help<b>ed</b>, wash<b>ed</b></td></tr>
+   <tr><td>/d/</td><td>after voiced sounds (most others)</td><td>play<b>ed</b>, open<b>ed</b>, call<b>ed</b></td></tr>
+   <tr><td>/ɪd/</td><td>after <b>t</b> or <b>d</b> (adds an extra syllable)</td><td>want<b>ed</b>, need<b>ed</b>, decid<b>ed</b></td></tr>
+  </tbody></table></div>
+
+  <h4>6. Same spelling, different stress: noun vs. verb</h4>
+  <p>Some two-syllable words are nouns when stressed on the <b>first</b> syllable, and verbs when stressed on the <b>second</b>.</p>
+  <div class="scroll"><table class="tbl"><thead><tr><th>Word</th><th>Noun (1st syllable)</th><th>Verb (2nd syllable)</th></tr></thead><tbody>
+   <tr><td>record</td><td>I bought a <b>RE</b>cord.</td><td>I want to re<b>CORD</b> this.</td></tr>
+   <tr><td>present</td><td>I got a <b>PRE</b>sent.</td><td>I'll pre<b>SENT</b> the plan.</td></tr>
+   <tr><td>object</td><td>Look at that <b>OB</b>ject.</td><td>I ob<b>JECT</b> to that!</td></tr>
+   <tr><td>increase</td><td>a big <b>IN</b>crease</td><td>prices in<b>CREASE</b>d</td></tr>
+  </tbody></table></div>
+  </div></div>`;
+  const pairFn=(host,pairs)=>{pairs.forEach(pr=>{const row=el('div','snt');row.innerHTML=`<b>${pr[0]}</b> vs <b>${pr[1]}</b>`;row.appendChild(playBtn(pr[0],pr[0]));row.appendChild(playBtn(pr[1],pr[1]));host.appendChild(row);});};
+  pairFn($('#trap-vowels',n),[['ship','sheep'],['live','leave'],['bit','beat'],['full','fool']]);
+  pairFn($('#trap-bv',n),[['berry','very'],['boat','vote'],['base','vase']]);
+  pairFn($('#trap-th',n),[['think','sink'],['this','dis (wrong)'],['bath','bass']]);
+  return n;
+}
+function connectedGuide(){
+  const n=el('div','');
+  n.innerHTML=`<div class="gd" style="--c:var(--pp)"><header class="gdh" style="background:var(--pp)"><h3>Connected Speech &amp; Weak Forms</h3><p>How words blur together in natural speech</p></header><div class="gdb">
+  <p class="lead">Fluent English doesn't sound like a list of separate words — words <b>link, blend and shrink</b> into each other. This is why native speech can sound so much faster than textbook English, even at a normal speed.</p>
+  <div class="notebox">🔊 <b>About the audio here:</b> the text-to-speech engine naturally links some words when reading a full sentence at a normal rate, so the "linked" examples usually sound fairly natural. But it won't reliably produce heavy reductions like <i>gonna</i> or <i>whatcha</i> the way a real speaker would — those are best modelled by a teacher or a real recording. Use these buttons to notice the pattern, not as a perfect model.</div>
+
+  <h4>1. Linking: consonant + vowel</h4>
+  <p>When a word ends in a consonant and the next one starts with a vowel, they join together as if they were one word.</p>
+  <div id="cs-link"></div>
+
+  <h4>2. Intrusion: an extra /w/, /j/ or /r/ appears</h4>
+  <p>When one word ends in a vowel and the next starts with a vowel, speakers often add a small linking sound so they don't collide.</p>
+  <div id="cs-intrude"></div>
+
+  <h4>3. Elision: a sound disappears</h4>
+  <p>In fast speech, some consonants — especially <b>t</b> and <b>d</b> in the middle of a consonant cluster — often drop out completely.</p>
+  <div id="cs-elide"></div>
+
+  <h4>4. Common reductions you'll hear (and can use casually)</h4>
+  <div class="scroll"><table class="tbl"><thead><tr><th>Full form</th><th>Reduced (informal, spoken only)</th></tr></thead><tbody>
+   <tr><td>going to</td><td>gonna</td></tr><tr><td>want to</td><td>wanna</td></tr><tr><td>got to</td><td>gotta</td></tr>
+   <tr><td>have to</td><td>hafta</td></tr><tr><td>what are you</td><td>whatcha / whaddaya</td></tr>
+   <tr><td>give me</td><td>gimme</td></tr><tr><td>let me</td><td>lemme</td></tr><tr><td>don't know</td><td>dunno</td></tr>
+  </tbody></table></div>
+  <div class="notebox">⚠️ These reductions are for <b>listening recognition</b>, not for formal writing or careful speech — students should understand them, but keep using the full forms in writing and exams.</div>
+
+  <h4>5. Weak forms of function words</h4>
+  <p>Grammar words are usually said quickly and quietly, with the vowel reduced to a short "uh" sound (schwa /ə/).</p>
+  <div class="scroll"><table class="tbl"><thead><tr><th>Word</th><th>Strong form (rare, for emphasis)</th><th>Weak form (normal, connected speech)</th></tr></thead><tbody>
+   <tr><td>can</td><td>/kæn/ — "I CAN do it!"</td><td>/kən/ — "I can help."</td></tr>
+   <tr><td>to</td><td>/tuː/ — "Who's it for? — For YOU, TO give."</td><td>/tə/ — "I want to go."</td></tr>
+   <tr><td>for</td><td>/fɔːr/ — "Who's it FOR?"</td><td>/fər/ — "It's for you."</td></tr>
+   <tr><td>was</td><td>/wɒz/ — "I said I WAS there."</td><td>/wəz/ — "I was tired."</td></tr>
+   <tr><td>and</td><td>/ænd/ — for a clear list</td><td>/ən/ or 'n — "fish 'n chips"</td></tr>
+  </tbody></table></div>
+  </div></div>`;
+  const linkFn=(host,items)=>{items.forEach(it=>{const row=el('div','snt');row.innerHTML=`<span>${it[0]}</span>`;row.appendChild(playBtn(it[1]||it[0].replace(/<[^>]+>/g,''),'Play'));host.appendChild(row);});};
+  linkFn($('#cs-link',n),[[`turn <span class="stress">i</span>t off → "tur-<b>ni</b>-toff"`],[`an apple → "a-<b>napple</b>"`],[`get up → "ge-<b>tup</b>"`]]);
+  linkFn($('#cs-intrude',n),[[`I am → "I-<b>y</b>am"`],[`go on → "go-<b>w</b>on"`],[`law and order → "law-<b>r</b>and order"`]]);
+  linkFn($('#cs-elide',n),[[`next day → "nex(t) day"`],[`must be → "mus(t) be"`],[`sandwich → "san(d)wich"`]]);
+  return n;
+}
+(function(){
+  const p=panels.spoken;
+  p.innerHTML=`<h2>Spoken English</h2><p class="lead">Grammar tells you what to say; this section is about how it actually sounds when spoken.</p>`;
+  subnav(p,[{label:'Overview',node:spokenOverview()},{label:'Sentence Stress',color:'ps',node:stressGuide()},{label:'Intonation',color:'pc',node:intonationGuide()},{label:'Pronunciation Traps',color:'pac',node:trapsGuide()},{label:'Connected Speech',color:'pp',node:connectedGuide()}],0);
+  const prac=el('div','tp');
+  p.appendChild(el('h3','','Practice'));
+  prac.appendChild(block('A. Which word carries the main stress?','Listen to the context, then choose the word that would normally be stressed.','sel',[
+   [`"Whose coat is this?" — "It's <u>my</u> coat, not yours." (contrast)`,'my','The contrast is between "my" and "yours", so "my" is stressed.'],
+   [`"I love this song!" (a simple statement)`,'love','"Love" is the main content word carrying the feeling.'],
+   [`"Can you help me?" — "I CAN, but I don't want to." (emphasis on ability)`,'can',`Normally "can" is weak, but here it's stressed to emphasise ability.`],
+   [`"She's my sister, not my friend." (contrast)`,'sister','The contrast word "sister" (vs. "friend") gets the stress.']],
+   {options:[['my','my'],['love','love'],['can','can'],['sister','sister'],['friend','friend'],['this','this']]}));
+  prac.appendChild(block('B. Rising or falling?','Decide the intonation pattern for each sentence type.','sel',[
+   [`"Are you coming to the party?" (yes/no question)`,'rise','Yes/no questions usually rise at the end.'],
+   [`"What time does it start?" (wh- question)`,'fall','Wh- questions usually fall, sounding like a normal request for information.'],
+   [`"Close the door, please." (a command)`,'fall','Commands and statements usually fall.'],
+   [`"You haven't finished yet, have you?" (unsure tag question)`,'rise',`A tag question where you're not sure of the answer usually rises.`],
+   [`"Great job, isn't it?" (confirming tag question)`,'fall',`A tag question where you're just confirming usually falls.`]],
+   {options:[['rise','Rising ↗'],['fall','Falling ↘']]}));
+  prac.appendChild(block('C. -ed ending: /t/, /d/ or /ɪd/?','Choose the sound of the -ed ending for each verb.','sel',[
+   [`watch<u>ed</u>`,'t','After the unvoiced "ch" sound, -ed is pronounced /t/.'],
+   [`play<u>ed</u>`,'d','After the voiced "ay" sound, -ed is pronounced /d/.'],
+   [`want<u>ed</u>`,'id','After "t", -ed adds an extra syllable: /ɪd/.'],
+   [`need<u>ed</u>`,'id','After "d", -ed adds an extra syllable: /ɪd/.'],
+   [`help<u>ed</u>`,'t','After the unvoiced "p" sound, -ed is pronounced /t/.'],
+   [`open<u>ed</u>`,'d','After the voiced "n" sound, -ed is pronounced /d/.']],
+   {options:[['t','/t/'],['d','/d/'],['id','/ɪd/']]}));
+  prac.appendChild(block('D. Noun or verb? (stress shift)','Where does the stress go?','sel',[
+   [`"I bought a new <u>record</u>." (a music album)`,'noun','As a noun, "record" is stressed on the first syllable: REcord.'],
+   [`"I'll <u>record</u> the lesson." (to save audio)`,'verb','As a verb, "record" is stressed on the second syllable: reCORD.'],
+   [`"Here's your <u>present</u>." (a gift)`,'noun','As a noun, "present" is stressed on the first syllable: PREsent.'],
+   [`"I'll <u>present</u> the results." (to show/give a talk)`,'verb','As a verb, "present" is stressed on the second syllable: preSENT.']],
+   {options:[['noun','Noun (1st syllable)'],['verb','Verb (2nd syllable)']]}));
+  prac.appendChild(block('E. Match the informal form','Choose the full form for each casual, spoken reduction.','sel',[
+   [`"I'm <u>gonna</u> call her."`,'going to','"gonna" is a casual, spoken reduction of "going to".'],
+   [`"Do you <u>wanna</u> come?"`,'want to','"wanna" is a casual, spoken reduction of "want to".'],
+   [`"I <u>gotta</u> go now."`,'got to','"gotta" is a casual, spoken reduction of "got to" (= have to).'],
+   [`"<u>Whatcha</u> doing?"`,'what are you','"whatcha" is a casual, spoken reduction of "what are you".']],
+   {options:[['going to','going to'],['want to','want to'],['got to','got to'],['what are you','what are you']]}));
+  prac.appendChild(block('F. Linking or separate?','In natural speech, does the consonant link to the next word?','sel',[
+   [`t<u>urn it</u> off`,'link','"turn" ends in a consonant and "it" starts with a vowel, so they link: "tur-ni-toff".'],
+   [`s<u>top</u> now`,'nolink','Both "stop" and "now" have consonant/vowel combinations that don\'t create the same strong linking pattern here.'],
+   [`<u>an apple</u>`,'link','"an" ends in a consonant and "apple" starts with a vowel: "a-napple".'],
+   [`<u>get up</u>`,'link','"get" ends in a consonant and "up" starts with a vowel: "ge-tup".']],
+   {options:[['link','They link together'],['nolink','They stay separate']]}));
+  p.appendChild(prac);
+  p.appendChild(el('div','card',`<h3>Speaking practice</h3><ul class="tips">
+   <li>Say the sentence <i>"I never said he took my money"</i> five times, stressing a different word each time. What does each version imply?</li>
+   <li>Practise a mini dialogue with a partner: one offers something with rising intonation ("Tea?↗"), the other answers.</li>
+   <li>Read a short list of three items out loud, remembering to rise on the first two and fall on the last.</li>
+   <li>Ask a real yes/no question and a real wh- question about your partner's weekend — listen for the intonation.</li>
+   <li>Practise the minimal pairs from Pronunciation Traps in pairs: one says a word, the other points to what they think they heard.</li>
+   <li>Make three sentences using <i>record, present,</i> and <i>object</i> — once as a noun, once as a verb — and say them with the correct stress.</li>
+   <li>Read this sentence naturally, linking the words: "Turn it off and pick it up." Then say it again, word by word — hear the difference?</li>
+   <li>Practise a casual phone conversation with a partner using <i>gonna, wanna, gotta</i> — then repeat it in a formal/written style.</li></ul>`));
 })();
 
 go('warm',false);renderScore();
