@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Review of Tenses — Grammar Guide</title>
+<style>
+:root{
+  --bg:#F3F5F9; --surface:#FFFFFF; --soft:#EEF1F7; --ink:#101828; --muted:#566074; --line:#DCE1EA;
+  --brand:#22336B; --on:#FFFFFF; --ok:#0E7A47; --okbg:#E1F4E9; --bad:#B42A26; --badbg:#FBE7E5; --focus:#2563EB;
+  --ps:#0B8483; --pc:#2159D6; --pas:#6D3FD1; --pac:#C7275F; --pp:#A86400;
+  box-sizing:border-box; padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0D1320; --surface:#161E2E; --soft:#1E2840; --ink:#E9EDF5; --muted:#A0AABC; --line:#2B3650;
+    --brand:#8FA6FF; --on:#0B1120; --ok:#5FD39A; --okbg:#12301F; --bad:#FF8B84; --badbg:#3A1917; --focus:#8FB2FF;
+    --ps:#3CC4C4; --pc:#7BA5FF; --pas:#B096FF; --pac:#FF80A8; --pp:#F2B84B;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0D1320; --surface:#161E2E; --soft:#1E2840; --ink:#E9EDF5; --muted:#A0AABC; --line:#2B3650;
+  --brand:#8FA6FF; --on:#0B1120; --ok:#5FD39A; --okbg:#12301F; --bad:#FF8B84; --badbg:#3A1917; --focus:#8FB2FF;
+  --ps:#3CC4C4; --pc:#7BA5FF; --pas:#B096FF; --pac:#FF80A8; --pp:#F2B84B;
+}
+html{scroll-padding-top:calc(env(safe-area-inset-top,0px) + 64px)}
+*,*::before,*::after{box-sizing:border-box}
+[hidden]{display:none!important}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;line-height:1.55;font-size:16px}
+h1,h2,h3,h4{line-height:1.2;margin:0}
+.wrap{max-width:1000px;margin:0 auto;padding:0 16px}
+:focus-visible{outline:3px solid var(--focus);outline-offset:2px}
+button{font:inherit;color:inherit;cursor:pointer}
+i{font-style:italic}
+
+/* Hero */
+.hero{background:#15214B;color:#fff;padding:22px 0 18px}
+.herotop{display:flex;flex-wrap:wrap;gap:16px;justify-content:space-between;align-items:flex-start}
+.hero h1{font-size:clamp(1.9rem,5vw,2.8rem);font-weight:800;letter-spacing:-.02em}
+.hero .sub{margin:8px 0 0;max-width:34rem;color:#C9D3F2}
+.ctl{display:flex;flex-direction:column;gap:10px;align-items:flex-end;min-width:200px}
+.scorebox{background:rgba(255,255,255,.1);border-radius:12px;padding:8px 14px;width:100%}
+.scorebox .lbl{font-size:.8rem;color:#C9D3F2;display:block}
+.scorebox b{font-size:1.35rem}
+.meter{height:6px;border-radius:99px;background:rgba(255,255,255,.18);margin-top:4px;overflow:hidden}
+.meter i{display:block;height:100%;width:0;background:#7EE0B0;transition:width .3s}
+.tgl{font-size:.9rem;color:#C9D3F2;display:flex;gap:8px;align-items:center;cursor:pointer}
+.tgl input{width:18px;height:18px;accent-color:#7EE0B0}
+
+/* Timeline */
+.tl{display:flex;gap:8px;margin-top:20px;overflow-x:auto;padding:6px 0 8px;align-items:stretch}
+.tlc{flex:1 0 140px;background:rgba(255,255,255,.08);border:0;border-top:4px solid var(--c);border-radius:10px;padding:8px 10px;text-align:left;color:#fff;min-height:64px}
+.tlc:hover{background:rgba(255,255,255,.16)}
+.tlc b{display:block;font-size:.92rem}
+.tlc small{display:block;color:#C9D3F2;font-size:.78rem;margin-top:2px;line-height:1.3}
+.now{flex:0 0 auto;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:0 6px;color:#fff;font-weight:800;letter-spacing:.06em;font-size:.8rem}
+.now::before,.now::after{content:"";width:2px;flex:1;background:#fff;opacity:.7}
+.now span{padding:4px 8px;border:2px solid #fff;border-radius:99px;margin:4px 0}
+
+/* Tabs */
+.tabs{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--surface);border-bottom:1px solid var(--line)}
+.tabs .wrap{display:flex;gap:4px;overflow-x:auto}
+.tabbtn{background:none;border:0;padding:14px 14px;font-weight:700;color:var(--muted);border-bottom:4px solid transparent;white-space:nowrap}
+.tabbtn:hover{color:var(--ink)}
+.tabbtn[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--brand)}
+main{padding-top:20px;padding-bottom:40px}
+.panel h2{font-size:1.6rem;margin-bottom:6px}
+.panel>p.lead{color:var(--muted);margin:0 0 16px;max-width:46rem}
+
+/* Sub navigation */
+.sub{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 18px}
+.subbtn{--c:var(--brand);background:var(--surface);border:2px solid var(--line);border-radius:99px;padding:7px 14px;font-weight:700;font-size:.92rem}
+.subbtn:hover{border-color:var(--c)}
+.subbtn.on{background:var(--c);border-color:var(--c);color:var(--on)}
+
+/* Cards */
+.card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:18px;margin-bottom:16px}
+.card h3{font-size:1.2rem;margin-bottom:8px}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px}
+.fnlist{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:8px;margin:10px 0 0;padding:0;list-style:none}
+.fnlist li{background:var(--soft);border-radius:8px;padding:8px 12px;font-size:.95rem}
+.fnlist b{color:var(--brand);margin-right:6px}
+
+/* Guide */
+.gd{background:var(--surface);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.gdh{background:var(--c);color:var(--on);padding:18px 20px}
+.gdh h3{font-size:1.6rem}
+.gdh p{margin:4px 0 0;opacity:.92}
+.gdb{padding:6px 20px 22px}
+.gdb h4{margin:22px 0 8px;font-size:1.05rem;color:var(--c)}
+.gdb .lead{font-size:1.08rem;margin:16px 0 0}
+.tbl{width:100%;border-collapse:collapse;font-size:.95rem;min-width:520px}
+.tbl th,.tbl td{border:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}
+.tbl th{background:var(--soft);font-weight:700}
+.tbl td.ex{width:32%}
+.tbl td.note{color:var(--muted);font-size:.9rem}
+.scroll{overflow-x:auto}
+.tbl b{color:var(--c,var(--brand))}
+.use{border-left:5px solid var(--c);padding:6px 0 6px 14px;margin:10px 0}
+.use strong{display:block}
+.use ul{margin:4px 0 0;padding-left:18px}
+.tips{margin:0;padding-left:20px}
+.tips li{margin:6px 0}
+.bad{color:var(--bad)}
+.mis td:first-child{color:var(--bad);text-decoration:line-through}
+.mis td:nth-child(2){color:var(--ok);font-weight:600}
+.cluetable{background:var(--soft);border-radius:12px;padding:10px 14px;margin:12px 0}
+.cluebox{border:3px solid var(--brand);border-radius:14px;padding:18px;background:var(--surface);margin-bottom:16px}
+.cluebox h3{font-size:1.35rem;margin-bottom:8px}
+.cluebox ol{padding-left:22px}
+.pill{display:inline-block;border-radius:99px;padding:2px 10px;background:color-mix(in srgb,var(--c) 16%,var(--surface));border:1px solid var(--c);font-size:.85rem;margin:2px 4px 2px 0;font-weight:600}
+mark{background:color-mix(in srgb,var(--pp) 30%,transparent);color:inherit;border-radius:4px;padding:0 3px}
+
+/* Exercises */
+.tp{--c:var(--brand)}
+.remind{border:2px solid var(--c);border-radius:12px;padding:12px 16px;background:color-mix(in srgb,var(--c) 8%,var(--surface));margin-bottom:16px}
+.remind p{margin:4px 0}
+.ex{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin-bottom:16px}
+.ex h4{font-size:1.1rem;color:var(--c,var(--brand))}
+.ex .inst{margin:4px 0 12px;color:var(--muted)}
+.items{list-style:none;margin:0;padding:0;counter-reset:n}
+.ex:not([data-kind="dlg"]) .items>li{counter-increment:n;display:grid;grid-template-columns:2rem 1fr;gap:4px;padding:10px 0;border-top:1px solid var(--line)}
+.ex:not([data-kind="dlg"]) .items>li::before{content:counter(n) ".";font-weight:700;color:var(--muted)}
+.ex[data-kind="dlg"] .items>li{padding:6px 10px;border-radius:8px;margin:2px 0}
+.items>li.ok{background:var(--okbg)}
+.items>li.bad{background:var(--badbg)}
+.qt{font-size:1.02rem}
+.qt .lab,.lab{font-weight:700;color:var(--muted);margin-right:4px}
+.blank{display:inline-block;min-width:3.5em;border-bottom:2px solid var(--ink);text-align:center;color:var(--muted)}
+.opts{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+.opt{background:var(--surface);border:2px solid var(--line);border-radius:10px;padding:6px 14px;font-weight:600}
+.opt:hover:not(:disabled){border-color:var(--c,var(--brand))}
+.opt.ok{background:var(--okbg);border-color:var(--ok);color:var(--ok)}
+.opt.bad{background:var(--badbg);border-color:var(--bad);color:var(--bad);text-decoration:line-through}
+.gap,.wide,select{font:inherit;color:var(--ink);background:var(--surface);border:2px solid var(--line);border-radius:8px;padding:3px 8px}
+.gap{margin:0 3px;text-align:center}
+.wide{width:100%;margin-top:6px;padding:8px 10px}
+.gap.ok,.wide.ok,select.ok{border-color:var(--ok);background:var(--okbg)}
+.gap.bad,.wide.bad,select.bad{border-color:var(--bad);background:var(--badbg)}
+.fb{min-height:1.2em;font-size:.93rem;margin-top:4px;color:var(--muted)}
+.ok>.body>.fb,li.ok .fb{color:var(--ok);font-weight:600}
+li.bad .fb{color:var(--bad)}
+.key{display:none;margin-top:4px;padding:4px 10px;border-left:4px solid var(--pp);background:color-mix(in srgb,var(--pp) 14%,var(--surface));font-size:.9rem;border-radius:0 8px 8px 0}
+body.teacher .key,.ex.reveal .key{display:block}
+.bar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:12px}
+.btn{background:var(--c,var(--brand));color:var(--on);border:0;border-radius:10px;padding:8px 16px;font-weight:700}
+.btn:hover{filter:brightness(1.1)}
+.btn.ghost{background:transparent;color:var(--ink);border:2px solid var(--line)}
+.btn.big{font-size:1.15rem;padding:12px 28px}
+.link{background:none;border:0;color:var(--brand);text-decoration:underline;padding:0 4px;font-weight:600}
+.res{font-weight:700;margin-left:6px}
+.tray,.built{display:flex;flex-wrap:wrap;gap:6px;min-height:44px;padding:6px;border-radius:10px}
+.built{background:var(--soft);border:2px dashed var(--line);margin-top:6px}
+.tk{background:var(--surface);border:2px solid var(--c,var(--brand));border-radius:8px;padding:4px 12px;font-weight:600}
+.tk:hover{background:var(--soft)}
+.tray{margin-top:4px}
+.dlg-h{margin:0 0 4px}
+
+/* Games */
+.gcard{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:20px;text-align:center}
+.gbar{display:flex;flex-wrap:wrap;gap:8px 22px;justify-content:center;font-size:1.02rem;margin-bottom:12px}
+.gtime{height:8px;border-radius:99px;background:var(--soft);overflow:hidden;margin:0 auto 14px;max-width:560px}
+.gtime i{display:block;height:100%;width:100%;background:var(--brand);transition:width 1s linear}
+.gword{font-size:clamp(1.6rem,6vw,2.6rem);font-weight:800;margin:14px 0;letter-spacing:-.01em}
+.gsent{font-size:1.35rem;margin:14px auto;max-width:36rem}
+.gopts{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px;max-width:760px;margin:0 auto}
+.gopt{background:var(--surface);border:2px solid var(--c);border-radius:10px;padding:10px 8px;font-weight:700}
+.gopt:hover:not(:disabled){background:color-mix(in srgb,var(--c) 14%,var(--surface))}
+.gopt.right{background:var(--c);color:var(--on)}
+.gopt.wrong{opacity:.45;text-decoration:line-through}
+kbd{font-family:inherit;font-size:.75rem;border:1px solid currentColor;border-radius:4px;padding:0 5px;margin-right:4px;opacity:.75}
+.gfb{min-height:3em;margin-top:12px}
+.gres{max-width:560px;margin:0 auto;text-align:left}
+.gres ul{padding-left:20px}
+.gin{font:inherit;font-size:1.25rem;text-align:center;border:2px solid var(--line);border-radius:10px;padding:8px 12px;background:var(--surface);color:var(--ink);width:min(320px,90%)}
+
+/* Speaking */
+.qcard{background:var(--surface);border:3px solid var(--c,var(--brand));border-radius:16px;padding:22px;text-align:center;margin:12px 0}
+.qcard .qtxt{font-size:clamp(1.3rem,4vw,1.9rem);font-weight:700;margin:8px 0 12px}
+.qcard .tagline{font-weight:700;color:var(--c,var(--brand))}
+details{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:10px 16px;margin-bottom:8px}
+summary{font-weight:700;cursor:pointer}
+details ul{margin:8px 0 2px;padding-left:20px}
+details li{margin:4px 0}
+.foot{color:var(--muted);font-size:.9rem;padding-bottom:30px}
+@media (max-width:560px){.ctl{align-items:stretch;width:100%}.gdb{padding:4px 14px 18px}.ex{padding:14px}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+<header class="hero">
+  <div class="wrap">
+    <div class="herotop">
+      <div>
+        <h1>Review of Tenses</h1>
+        <p class="sub">Read the clues, choose the tense. A complete guide, practice, games and speaking for five essential tenses.</p>
+      </div>
+      <div class="ctl">
+        <div class="scorebox" aria-live="polite"><span class="lbl">Correct answers</span><b id="score">0 / 0</b><div class="meter"><i id="bar"></i></div></div>
+        <label class="tgl"><input type="checkbox" id="teacher"> Teacher mode: show all answer keys</label>
+      </div>
+    </div>
+    <div class="tl" id="tl" aria-label="Tenses on a timeline"></div>
+  </div>
+</header>
+<nav class="tabs" id="tabs" aria-label="Sections"><div class="wrap" role="tablist"></div></nav>
+<main class="wrap" id="app"></main>
+<footer class="wrap foot">Tip for teachers: switch on Teacher mode to reveal the answer key under every exercise. Students can use “Show answers” on each exercise once they have tried.</footer>
+
+<script>
+(function(){
+'use strict';
+
+/* ---------- helpers ---------- */
+const $=(s,r=document)=>r.querySelector(s), $$=(s,r=document)=>Array.from(r.querySelectorAll(s));
+const el=(tag,cls,html)=>{const e=document.createElement(tag);if(cls)e.className=cls;if(html!=null)e.innerHTML=html;return e;};
+const norm=s=>String(s).toLowerCase().replace(/[’‘`´]/g,"'").replace(/[.?!,;:"]+$/g,'').replace(/\s+/g,' ').trim();
+const shuffle=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;};
+const cap=s=>s.charAt(0).toUpperCase()+s.slice(1);
+const items={};let uid=0;
+const reg=()=>{const id='q'+(++uid);items[id]=0;return id;};
+function renderScore(){
+  const ids=Object.keys(items);const s=ids.reduce((a,k)=>a+items[k],0);
+  $('#score').textContent=s+' / '+ids.length;
+  $('#bar').style.width=(ids.length?100*s/ids.length:0)+'%';
+}
+function setScore(id,ok){items[id]=ok?1:0;renderScore();}
+
+/* ---------- tense data ---------- */
+const T=[
+{id:'ps',name:'Present Simple',tag:'Routines, habits, facts and permanent states',
+ sum:'Use the Present Simple for things that are generally true, that happen regularly, or that are permanent. It is the “this is how things are” tense.',
+ use:'Routines, habits, facts, permanent states',formS:'V / V-s · do / does + not + V',
+ cl:'every day, always, usually, on Mondays',sample:'My contact works in the accounting department.',
+ form:[['Affirmative',`I / you / we / they <b>work</b><br>he / she / it <b>works</b>`],['Negative',`I / you / we / they <b>do not (don't) work</b><br>he / she / it <b>does not (doesn't) work</b>`],['Question',`<b>Do</b> I / you / we / they <b>work</b>?<br><b>Does</b> he / she / it <b>work</b>?`]],
+ uses:[['Habits and routines',[`I <b>check</b> my email every morning.`,`Our team <b>has</b> a meeting on Mondays.`]],
+  ['Permanent states and facts',[`My contact <b>works</b> in the accounting department.`,`Water <b>boils</b> at 100°C.`]],
+  ['Timetables and schedules',[`The presentation <b>starts</b> at 9:00 tomorrow.`,`The bus <b>leaves</b> at 6:30.`]],
+  ['State verbs (know, like, want, need, believe…) almost always use the simple form',[`I <b>need</b> a new laptop.`,`She <b>knows</b> the answer.`]]],
+ tips:[`Add <b>-s / -es / -ies</b> for he, she, it: <i>works, watches, studies, goes</i>.`,`After <i>does / doesn't</i> the verb goes back to its base form: <i>Does she <b>work</b>?</i> (not <i>works</i>).`,`Frequency adverbs go <b>before</b> the main verb but <b>after</b> <i>be</i>: <i>She <b>usually</b> arrives early. / She is <b>usually</b> early.</i>`],
+ mis:[['She work in a bank.','She works in a bank.',`Add -s with he / she / it.`],['Does he plays tennis?','Does he play tennis?',`After <i>does</i> use the base verb.`],['I am knowing your teacher.','I know your teacher.',`<i>Know</i> is a state verb.`]],
+ time:[[`every day / week / month / year`,`I check my email <b>every day</b>.`,``],
+  [`always, usually, often, sometimes, rarely, never`,`She <b>usually</b> takes the bus.`,`Before the main verb, after <i>be</i>: <i>He is <b>always</b> late.</i>`],
+  [`on Mondays, at weekends, in the morning`,`We have meetings <b>on Mondays</b>.`,``],
+  [`once a week, twice a month, three times a year`,`I visit my parents <b>twice a month</b>.`,`Answers <i>How often…?</i>`],
+  [`whenever, every time`,`<b>Whenever</b> I'm stressed, I go for a walk.`,``],
+  [`How often…?`,`<b>How often</b> do you exercise?`,`The question that asks for a habit.`]]},
+{id:'pc',name:'Present Continuous',tag:'Actions in progress now and temporary situations',
+ sum:'Use the Present Continuous for actions that are happening at this moment, for temporary situations around now, and for changes. It is the “this is happening now” tense.',
+ use:'Actions in progress now, temporary situations, trends, arranged plans',formS:'am / is / are + V-ing',
+ cl:'now, at the moment, these days, Look!',sample:'I am looking for an internship.',
+ form:[['Affirmative',`I <b>am working</b><br>he / she / it <b>is working</b><br>you / we / they <b>are working</b>`],['Negative',`I <b>am not working</b><br>he / she / it <b>isn't working</b><br>you / we / they <b>aren't working</b>`],['Question',`<b>Am</b> I <b>working</b>?<br><b>Is</b> he / she / it <b>working</b>?<br><b>Are</b> you / we / they <b>working</b>?`]],
+ uses:[['Actions happening now',[`I <b>am looking</b> for an internship.`,`Please be quiet: the baby <b>is sleeping</b>.`]],
+  ['Temporary situations around now',[`I <b>'m working</b> from home this week.`,`She <b>is staying</b> in a hotel while her house is painted.`]],
+  ['Changes and trends',[`More people <b>are studying</b> online these days.`,`The company <b>is growing</b> fast.`]],
+  ['Arranged plans in the near future',[`We <b>are meeting</b> the client at 3 p.m. tomorrow.`,`I <b>'m flying</b> to Bogotá on Friday.`]]],
+ tips:[`Spelling: <i>run → running, write → writing, study → studying, stop → stopping</i>.`,`State verbs (<i>know, like, love, want, need, believe, understand</i>) are not normally used in the continuous: <i>I <b>want</b> a coffee</i> (not <i>I'm wanting</i>).`,`In questions, <i>be</i> goes before the subject: <i>What <b>are you</b> doing?</i>`],
+ mis:[['They are talk to the manager.','They are talking to the manager.',`<i>be</i> + verb-<i>ing</i>.`],['What you are doing?','What are you doing?',`Invert <i>are</i> and <i>you</i> in questions.`],[`I'm liking this course.`,'I like this course.',`<i>Like</i> is a state verb.`]],
+ time:[[`now, right now, at the moment`,`I'm answering an email <b>right now</b>.`,``],
+  [`currently, at present`,`She is <b>currently</b> working on a big project.`,`A little more formal.`],
+  [`today, this week / month / year`,`We're using a new system <b>this month</b>.`,`A period that includes now: temporary.`],
+  [`these days, nowadays`,`More people are working from home <b>nowadays</b>.`,`Changes and trends.`],
+  [`Look! Listen!`,`<b>Look!</b> It's snowing.`,`Something is happening as you speak.`],
+  [`still`,`He is <b>still</b> waiting for a reply.`,`The action continues longer than expected.`],
+  [`tomorrow, next week (with a plan)`,`We're meeting the client <b>tomorrow</b> at ten.`,`An arranged future plan.`]]},
+{id:'pas',name:'Past Simple',tag:'Finished actions and states at a specific past time',
+ sum:'Use the Past Simple for actions and states that started and finished in the past, when the time is known or clear. It is the “that is over” tense.',
+ use:'Finished actions or states at a specific past time',formS:'V-ed / irregular · did + not + V',
+ cl:'yesterday, last week, ago, in 2019',sample:'I was nervous about meeting people when I started working here.',
+ form:[['Affirmative',`I / you / he / she / it / we / they <b>worked</b> (regular)<br>… <b>went</b> (irregular)<br><i>be</i>: I / he / she / it <b>was</b> · you / we / they <b>were</b>`],['Negative',`… <b>did not (didn't) work</b><br><i>be</i>: <b>wasn't / weren't</b>`],['Question',`<b>Did</b> + subject + <b>work</b>?<br><i>be</i>: <b>Was / Were</b> + subject?`]],
+ uses:[['Finished actions at a specific time in the past',[`I <b>met</b> my manager yesterday.`,`She <b>moved</b> to Cali in 2019.`]],
+  ['A sequence of past actions (telling a story)',[`I <b>opened</b> the door, <b>walked</b> in and <b>sat</b> down.`]],
+  ['Past states and habits that are finished',[`I <b>was</b> nervous about meeting people when I <b>started</b> working here.`,`When I <b>was</b> a student, I <b>worked</b> in a café on weekends.`]]],
+ tips:[`Regular verbs add <b>-ed</b> (<i>worked, studied, stopped</i>). Irregular verbs change: <i>go → went, see → saw, buy → bought, have → had</i>.`,`After <i>did / didn't</i> use the <b>base verb</b>: <i>Did you <b>go</b>?</i> / <i>I didn't <b>see</b> him.</i>`,`Use the Past Simple with a <b>finished time</b> (<i>yesterday, last week, ago, in 2019</i>). Never use the Present Perfect with these.`],
+ mis:[['Did you went to school yesterday?','Did you go to school yesterday?',`After <i>did</i> use the base verb.`],['She goed home.','She went home.',`<i>Go</i> is irregular.`],['I have seen that film two years ago.','I saw that film two years ago.',`<i>ago</i> needs the Past Simple.`]],
+ time:[[`yesterday`,`I sent the report <b>yesterday</b>.`,``],
+  [`last night / week / month / year`,`We moved offices <b>last year</b>.`,``],
+  [`… ago`,`She started here <b>three months ago</b>.`,`Counts back from now.`],
+  [`in 2019, in June, on Monday (past)`,`I graduated <b>in 2019</b>.`,`A specific, finished point in time.`],
+  [`when I was a child / a student`,`<b>When I was a student</b>, I worked in a café.`,`Past habits and states.`],
+  [`the other day, then, after that, first…`,`<b>First</b> I opened the file, <b>then</b> I saved it.`,`Stories and sequences.`],
+  [`When did…? What time did…?`,`<b>What time did</b> the meeting start?`,`Questions about a specific past time.`]]},
+{id:'pac',name:'Past Continuous',tag:'Actions in progress at a moment in the past',
+ sum:'Use the Past Continuous to show that an action was in progress at a certain moment in the past, or that it was interrupted. It is the “I was in the middle of it” tense.',
+ use:'Actions in progress at a past moment, interrupted actions, background',formS:'was / were + V-ing',
+ cl:'while, when, at 8 p.m. last night, all day yesterday',sample:'I was chatting to a colleague when you called me.',
+ form:[['Affirmative',`I / he / she / it <b>was working</b><br>you / we / they <b>were working</b>`],['Negative',`I / he / she / it <b>wasn't working</b><br>you / we / they <b>weren't working</b>`],['Question',`<b>Was</b> I / he / she / it <b>working</b>?<br><b>Were</b> you / we / they <b>working</b>?`]],
+ uses:[['An action in progress at a specific moment in the past',[`At 8 p.m. last night, I <b>was writing</b> a report.`,`What <b>were</b> you <b>doing</b> at midnight?`]],
+  ['A longer action interrupted by a shorter one (Past Continuous + Past Simple)',[`I <b>was chatting</b> to a colleague when you <b>called</b> me.`,`They <b>were playing</b> football when it <b>started</b> to rain.`]],
+  ['Two actions in progress at the same time',[`While I <b>was cooking</b>, my brother <b>was setting</b> the table.`]],
+  ['Background: setting the scene in a story',[`The sun <b>was shining</b> and people <b>were walking</b> in the park.`]]],
+ tips:[`Rule of thumb: <b>while + Past Continuous</b> (the longer action) and <b>when + Past Simple</b> (the shorter, interrupting action).`,`<i>was</i> goes with I / he / she / it; <i>were</i> goes with you / we / they.`,`State verbs stay in the Past Simple: <i>I <b>knew</b> the answer</i> (not <i>I was knowing</i>).`],
+ mis:[['I was work when you called.','I was working when you called.',`<i>was / were</i> + verb-<i>ing</i>.`],['They was playing in the park.','They were playing in the park.',`<i>They</i> → <i>were</i>.`],['I was watching TV when you were calling.','I was watching TV when you called.',`The interrupting action is Past Simple.`]],
+ time:[[`while`,`<b>While</b> I was cooking, he was setting the table.`,`Usually followed by the Past Continuous.`],
+  [`when (an interruption)`,`I was walking home <b>when</b> it started to rain.`,`<i>When</i> is usually followed by the Past Simple.`],
+  [`as`,`<b>As</b> I was leaving, the phone rang.`,`Similar to <i>while</i>.`],
+  [`at 8 o'clock last night, at that moment, at the time`,`At <b>9 p.m. last night</b>, I was studying.`,`A precise moment in the past.`],
+  [`all day / all morning yesterday`,`It was raining <b>all day yesterday</b>.`,`A long action over a period.`],
+  [`this time last week / year`,`<b>This time last year</b>, we were living in Quito.`,``],
+  [`What were you doing…?`,`<b>What were you doing</b> at midnight?`,`Asks about an action in progress.`]]},
+{id:'pp',name:'Present Perfect',tag:'Past actions connected to the present',
+ sum:'Use the Present Perfect when a past action is connected to now: an experience, something that started in the past and continues, or a recent event with a result in the present. It is the “past + now” tense.',
+ use:'Past actions connected to now: experience, unfinished time, recent news',formS:'have / has + past participle',
+ cl:'ever, never, already, yet, just, for, since, so far',sample:'Have you spoken to your friends about their career plans?',
+ form:[['Affirmative',`I / you / we / they <b>have worked</b><br>he / she / it <b>has worked</b>`],['Negative',`I / you / we / they <b>haven't worked</b><br>he / she / it <b>hasn't worked</b>`],['Question',`<b>Have</b> I / you / we / they <b>worked</b>?<br><b>Has</b> he / she / it <b>worked</b>?`]],
+ uses:[['Life experiences (no specific time)',[`<b>Have</b> you ever <b>spoken</b> to your friends about their career plans?`,`I <b>'ve visited</b> three countries.`]],
+  ['Actions that started in the past and continue now (for / since)',[`I <b>'ve worked</b> here for two years.`,`They <b>'ve known</b> each other since 2015.`]],
+  ['Recent actions with a result now',[`I <b>'ve just finished</b> my report.`,`She <b>has lost</b> her keys, so she can't get in.`]],
+  ['Changes over time',[`Prices <b>have risen</b> a lot recently.`]]],
+ tips:[`Form: <b>have / has + past participle</b> (<i>worked, seen, been, gone, done</i>). Learn the irregular participles: <i>see → seen, write → written</i>.`,`<b>for</b> + length of time (<i>for two years</i>); <b>since</b> + starting point (<i>since 2024</i>).`,`<i>She has <b>been</b> to Paris</i> = she visited and came back. <i>She has <b>gone</b> to Paris</i> = she is there now.`,`Never use the Present Perfect with a finished time: <i>yesterday, last week, ago, in 2019</i>.`],
+ mis:[['I have seen him yesterday.','I saw him yesterday.',`<i>yesterday</i> is a finished time → Past Simple.`],['She has work here since 2020.','She has worked here since 2020.',`Use the past participle.`],['We live in this city for six years.','We have lived in this city for six years.',`<i>for</i> + period up to now → Present Perfect.`]],
+ time:[[`ever, never`,`<b>Have you ever</b> been to Cusco? No, I've <b>never</b> been there.`,`Experience: no specific time.`],
+  [`already, just`,`I've <b>just</b> sent the file. She has <b>already</b> left.`,`Between <i>have</i> and the participle.`],
+  [`yet`,`Have you finished <b>yet</b>? I haven't finished <b>yet</b>.`,`Questions and negatives, usually at the end.`],
+  [`so far, up to now, until now`,`We've sold ten units <b>so far</b>.`,``],
+  [`recently, lately`,`I've been very busy <b>lately</b>.`,``],
+  [`for + period of time`,`I've worked here <b>for two years</b>.`,`<i>for</i> = how long.`],
+  [`since + starting point`,`I've worked here <b>since 2024</b>.`,`<i>since</i> = when it started.`],
+  [`this week / month / year, today (not finished)`,`I've had three meetings <b>this week</b>.`,`The period is still open.`],
+  [`How long…? How many times…?`,`<b>How long</b> have you lived here?`,``]]}
+];
+const TB={};T.forEach(t=>TB[t.id]=t);
+const WHY={ps:'a routine or a fact',pc:'an action happening now or around now',pas:'a finished action at a specific past time',pac:'an action in progress at a past moment',pp:'a past action connected to the present'};
+
+/* ---------- exercise engine ---------- */
+function gapify(str){
+  let n=0;
+  return str.replace(/\[\[(.+?)\]\]/g,(m,a)=>{
+    const first=a.split('|')[0];
+    return `<input class="gap" type="text" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" data-ans="${a.replace(/"/g,'&quot;')}" style="width:${Math.max(5,Math.min(20,first.length+3))}ch" aria-label="gap ${++n}">`;
+  });
+}
+function gapKey(str){return Array.from(str.matchAll(/\[\[(.+?)\]\]/g)).map(m=>m[1].split('|')[0]).join(' / ');}
+function renderItem(kind,d,opt){
+  if(kind==='mc'){
+    return `<div class="body"><div class="qt">${d[0].replace('___','<span class="blank">&nbsp;&nbsp;&nbsp;</span>')}</div><div class="opts">${d[1].map((o,i)=>`<button type="button" class="opt" data-i="${i}">${o}</button>`).join('')}</div><div class="fb"></div><div class="key">Answer: ${d[1][d[2]]}</div></div>`;
+  }
+  if(kind==='gap'||kind==='dlg'){
+    return `<div class="body"><div class="qt">${gapify(d)}</div><div class="fb"></div><div class="key">Answer: ${gapKey(d)}</div></div>`;
+  }
+  if(kind==='q'){
+    return `<div class="body"><div class="qt"><span class="lab">Answer:</span> ${d[0]}</div><input class="wide" type="text" autocomplete="off" spellcheck="false" placeholder="Write the question…" data-ans="${d[1].replace(/"/g,'&quot;')}" aria-label="Your question"><div class="fb"></div><div class="key">Model question: ${d[1].split('|').join(' &nbsp;/&nbsp; ')}</div></div>`;
+  }
+  if(kind==='err'){
+    return `<div class="body"><div class="qt"><span class="lab">Find the mistake:</span> <span class="bad">${d[0]}</span></div><input class="wide" type="text" autocomplete="off" spellcheck="false" placeholder="Write the correct sentence…" data-ans="${d[1].replace(/"/g,'&quot;')}" aria-label="Corrected sentence"><div class="fb"></div><div class="key">Correct: ${d[1].split('|')[0]}</div></div>`;
+  }
+  if(kind==='sel'){
+    const lab=(opt.options.find(o=>o[0]===d[1])||[])[1]||d[1];
+    return `<div class="body"><div class="qt">${d[0]}</div><select data-ans="${d[1]}" data-why="${d[2].replace(/"/g,'&quot;')}" aria-label="Your choice"><option value="">Select…</option>${opt.options.map(o=>`<option value="${o[0]}">${o[1]}</option>`).join('')}</select><div class="fb"></div><div class="key">Answer: ${lab}. ${d[2]}</div></div>`;
+  }
+  if(kind==='order'){
+    return `<div class="body"><div class="qt"><span class="lab">Put the words in order:</span></div><div class="built" aria-label="Your sentence"></div><div class="tray"></div><div class="fb"></div><div class="key">Answer: ${cap(d[0].split('|')[0])}${d[1]}</div></div>`;
+  }
+  return '';
+}
+function initOrder(li,d){
+  const words=d[0].split('|')[0].split(' ');let mixed=shuffle(words),t=0;
+  while(words.length>1&&mixed.join(' ')===words.join(' ')&&t++<10)mixed=shuffle(words);
+  const tray=$('.tray',li),built=$('.built',li);
+  mixed.forEach(w=>{const b=el('button','tk',w);b.type='button';tray.appendChild(b);});
+  li.addEventListener('click',e=>{
+    const b=e.target.closest('.tk');if(!b)return;
+    (b.parentNode===tray?built:tray).appendChild(b);
+  });
+}
+function updRes(sec){
+  const all=$$('.items > li[data-id]',sec);
+  const ok=all.filter(li=>li.classList.contains('ok')).length;
+  $('.res',sec).textContent=all.some(li=>li.classList.contains('ok')||li.classList.contains('bad'))?`${ok} / ${all.length} correct`:'';
+}
+function block(title,inst,kind,data,opt={}){
+  const sec=el('section','ex');sec.dataset.kind=kind;
+  sec.innerHTML=`<h4>${title}</h4>${inst?`<p class="inst">${inst}</p>`:''}<ol class="items"></ol><div class="bar">${kind==='mc'?'':'<button type="button" class="btn" data-act="check">Check answers</button>'}<button type="button" class="btn ghost" data-act="reset">Try again</button><button type="button" class="btn ghost" data-act="show">Show answers</button><span class="res" aria-live="polite"></span></div>`;
+  const ol=$('.items',sec);const ids=[];
+  function fill(){
+    ol.innerHTML='';let k=0;
+    data.forEach(d=>{
+      const li=document.createElement('li');
+      if(kind==='dlg'&&!/\[\[/.test(d)){li.className='plain';li.innerHTML=d;ol.appendChild(li);return;}
+      const id=ids[k]||(ids[k]=reg());items[id]=0;k++;
+      li.dataset.id=id;li.innerHTML=renderItem(kind,d,opt);ol.appendChild(li);
+      if(kind==='order')initOrder(li,d);
+    });
+    $('.res',sec).textContent='';sec.classList.remove('reveal');renderScore();
+  }
+  sec._fill=fill;sec._data=data;sec._opt=opt;fill();
+  return sec;
+}
+function checkBlock(sec){
+  const kind=sec.dataset.kind;
+  $$('.items > li[data-id]',sec).forEach(li=>{
+    const id=li.dataset.id,fb=$('.fb',li);let good=false,msg='';
+    li.classList.remove('ok','bad');
+    if(kind==='gap'||kind==='dlg'){
+      good=true;
+      $$('input.gap',li).forEach(inp=>{const acc=inp.dataset.ans.split('|').map(norm);const g=acc.includes(norm(inp.value));inp.classList.toggle('ok',g);inp.classList.toggle('bad',!g);if(!g)good=false;});
+      msg=good?'✔ Correct':'Check the highlighted gap(s) and the time expression.';
+    }else if(kind==='q'||kind==='err'){
+      const inp=$('input.wide',li),v=norm(inp.value);
+      if(!v){msg='Write your answer first.';}
+      else{
+        good=inp.dataset.ans.split('|').map(norm).includes(v);
+        msg=good?'✔ Correct':`Compare with the model: <b>${inp.dataset.ans.split('|')[0]}</b> <button type="button" class="link" data-act="own">✔ My answer is also correct</button>`;
+      }
+      inp.classList.toggle('ok',good);inp.classList.toggle('bad',!good&&!!v);
+    }else if(kind==='sel'){
+      const s=$('select',li);good=s.value===s.dataset.ans;
+      msg=!s.value?'Choose an answer.':(good?'✔ '+s.dataset.why:'Not quite. Look at the verb form and the time clue.');
+      s.classList.toggle('ok',good);s.classList.toggle('bad',!good&&!!s.value);
+    }else if(kind==='order'){
+      const built=$$('.built .tk',li).map(b=>b.textContent).join(' ');
+      const vars=li.parentNode&&sec._data[$$('.items > li[data-id]',sec).indexOf(li)];
+      const acc=vars[0].split('|').map(norm);
+      good=acc.includes(norm(built));
+      msg=built?(good?'✔ '+cap(built)+vars[1]:'Not quite yet. Check the word order.'):'Tap the words to build the sentence.';
+    }
+    li.classList.add(good?'ok':'bad');setScore(id,good);
+    if(!good&&(msg==='Write your answer first.'||msg==='Choose an answer.'||msg==='Tap the words to build the sentence.'))li.classList.remove('bad');
+    fb.innerHTML=msg;
+  });
+  updRes(sec);
+}
+
+document.addEventListener('click',e=>{
+  const act=e.target.closest('[data-act]');
+  if(act){
+    const sec=act.closest('.ex');
+    if(act.dataset.act==='check'&&sec)checkBlock(sec);
+    else if(act.dataset.act==='reset'&&sec)sec._fill();
+    else if(act.dataset.act==='show'&&sec)sec.classList.toggle('reveal');
+    else if(act.dataset.act==='own'&&sec){
+      const li=act.closest('li');setScore(li.dataset.id,true);li.classList.remove('bad');li.classList.add('ok');
+      $('.fb',li).textContent='✔ Accepted. Good job comparing your answer with the model.';
+      const w=$('input.wide',li);if(w){w.classList.remove('bad');w.classList.add('ok');}
+      updRes(sec);
+    }
+    return;
+  }
+  const opt=e.target.closest('.opt');
+  if(opt){
+    const li=opt.closest('li'),sec=opt.closest('.ex');
+    if(li.classList.contains('ok'))return;
+    const idx=+opt.dataset.i,d=sec._data[$$('.items > li[data-id]',sec).indexOf(li)];
+    const fb=$('.fb',li);
+    if(idx===d[2]){opt.classList.add('ok');li.classList.remove('bad');li.classList.add('ok');$$('.opt',li).forEach(b=>b.disabled=true);fb.textContent='✔ Correct';setScore(li.dataset.id,true);}
+    else{opt.classList.add('bad');opt.disabled=true;li.classList.add('bad');fb.textContent='Not yet. Find the time expression and ask: routine, now, finished, in progress or connected to now?';setScore(li.dataset.id,false);}
+    updRes(sec);
+  }
+});
+document.addEventListener('keydown',e=>{
+  if(e.key==='Enter'&&e.target.matches('.ex input')){const sec=e.target.closest('.ex');if(sec.dataset.kind!=='mc')checkBlock(sec);}
+});
+$('#teacher').addEventListener('change',e=>document.body.classList.toggle('teacher',e.target.checked));
+
+/* ---------- sub navigation ---------- */
+function subnav(host,entries,start){
+  const nav=el('div','sub');nav.setAttribute('role','tablist');
+  function sel(i){Array.from(nav.children).forEach((b,j)=>{b.classList.toggle('on',i===j);b.setAttribute('aria-selected',i===j?'true':'false');});entries.forEach((en,j)=>{en.node.hidden=i!==j;});}
+  entries.forEach((en,i)=>{
+    const b=el('button','subbtn',en.label);b.type='button';b.setAttribute('role','tab');
+    if(en.color)b.style.setProperty('--c',`var(--${en.color})`);
+    b.addEventListener('click',()=>sel(i));nav.appendChild(b);
+  });
+  host.appendChild(nav);entries.forEach(en=>host.appendChild(en.node));sel(start||0);
+  return {sel};
+}
+
+/* ---------- tabs ---------- */
+const TABS=[['warm','Warm-up'],['guide','Guide'],['practice','Practice by tense'],['mixed','Mixed practice'],['games','Games'],['speak','Speaking']];
+const panels={};
+const tabBar=$('#tabs .wrap'),app=$('#app');
+TABS.forEach(([k,label])=>{
+  const b=el('button','tabbtn',label);b.type='button';b.setAttribute('role','tab');b.dataset.tab=k;
+  b.addEventListener('click',()=>go(k,true));tabBar.appendChild(b);
+  const p=el('section','panel');p.id='p-'+k;p.hidden=true;app.appendChild(p);panels[k]=p;
+});
+function go(k,scroll){
+  $$('.tabbtn').forEach(b=>b.setAttribute('aria-selected',b.dataset.tab===k?'true':'false'));
+  TABS.forEach(([t])=>{panels[t].hidden=t!==k;});
+  if(scroll)window.scrollTo({top:$('#tabs').offsetTop-4,behavior:'smooth'});
+}
+
+/* ---------- timeline ---------- */
+(function(){
+  const tl=$('#tl');
+  const order=['pac','pas','pp','NOW','ps','pc'];
+  const ex={pac:'I was chatting…',pas:'I started…',pp:'I have worked…',ps:'I work…',pc:'I am working…'};
+  order.forEach(id=>{
+    if(id==='NOW'){tl.appendChild(el('div','now','<span>NOW</span>'));return;}
+    const b=el('button','tlc',`<b>${TB[id].name}</b><small>${ex[id]}</small>`);b.type='button';b.style.setProperty('--c',`var(--${id})`);
+    b.addEventListener('click',()=>openGuide(id));tl.appendChild(b);
+  });
+})();
+
+/* ---------- WARM-UP ---------- */
+(function(){
+  const p=panels.warm;
+  p.innerHTML=`<h2>Warm-up</h2><p class="lead">Before the review, think about what each sentence tells you: is it a routine, is it happening now, is it finished, was it in progress, or does it connect to the present?</p>`;
+  const card=el('div','card',`<h3>Functions</h3><ul class="fnlist"><li><b>a.</b>a past state or habit</li><li><b>b.</b>an action in progress at a past moment</li><li><b>c.</b>a present state or habit</li><li><b>d.</b>an action in progress now</li><li><b>e.</b>an action at an unspecific time in the past</li></ul>`);
+  p.appendChild(card);
+  const S=[
+   ['My contact works in the accounting department.','c','<i>works</i> is a present state (Present Simple).'],
+   ['I am looking for an internship.','d','<i>am looking</i> is in progress now (Present Continuous).'],
+   ['I was nervous about meeting people when I started working here.','a','<i>was</i> is a finished past state (Past Simple).'],
+   ['I was chatting to a colleague when you called me.','b','<i>was chatting</i> was in progress when another action happened (Past Continuous).'],
+   ['Have you spoken to your friends about their career plans?','e','<i>have you spoken</i> asks about an unspecific past time (Present Perfect).']];
+  p.appendChild(block('A. Match the sentences to the functions','Choose the letter (a–e) for each sentence.','sel',S,{options:['a','b','c','d','e'].map(x=>[x,x])}));
+  const tn=T.map(t=>[t.id,t.name]);
+  p.appendChild(block('B. Name the tense','Now say which tense each sentence uses.','sel',[
+   [S[0][0],'ps','Present Simple: a present state or habit.'],[S[1][0],'pc','Present Continuous: an action in progress now.'],[S[2][0],'pas','Past Simple: a finished past state.'],[S[3][0],'pac','Past Continuous: in progress at a past moment.'],[S[4][0],'pp','Present Perfect: an unspecific time in the past.']],{options:tn}));
+  const nx=el('div','card',`<h3>Ready for the review?</h3><p>Every tense has its own <b>time expressions</b>: small words that tell you which tense to use. Learn them and most gap-fill exercises become much easier.</p><button type="button" class="btn" id="toGuide">Start the guide</button>`);
+  p.appendChild(nx);$('#toGuide',nx).addEventListener('click',()=>{go('guide',true);});
+})();
+
+/* ---------- GUIDE ---------- */
+let G=null;
+function guideCard(t){
+  const c=el('article','gd');c.style.setProperty('--c',`var(--${t.id})`);
+  c.innerHTML=`<header class="gdh"><h3>${t.name}</h3><p>${t.tag}</p></header><div class="gdb">
+  <p class="lead">${t.sum}</p>
+  <h4>Form</h4><div class="scroll"><table class="tbl"><tbody>${t.form.map(r=>`<tr><th scope="row">${r[0]}</th><td>${r[1]}</td></tr>`).join('')}</tbody></table></div>
+  <h4>When do we use it?</h4>${t.uses.map(u=>`<div class="use"><strong>${u[0]}</strong><ul>${u[1].map(x=>`<li>${x}</li>`).join('')}</ul></div>`).join('')}
+  <h4>Remember</h4><ul class="tips">${t.tips.map(x=>`<li>${x}</li>`).join('')}</ul>
+  <h4>Common mistakes</h4><div class="scroll"><table class="tbl mis"><thead><tr><th>Incorrect</th><th>Correct</th><th>Why?</th></tr></thead><tbody>${t.mis.map(m=>`<tr><td>${m[0]}</td><td>${m[1]}</td><td>${m[2]}</td></tr>`).join('')}</tbody></table></div>
+  <h4>Time expressions: your clues for the ${t.name}</h4>
+  <p>These words tell you <b>when</b> the action happens, so they tell you <b>which tense</b> to use. Look for them first in every exercise.</p>
+  <div class="scroll"><table class="tbl"><thead><tr><th>Time expression</th><th>Example</th><th>Notes</th></tr></thead><tbody>${t.time.map(r=>`<tr><td class="ex"><b>${r[0]}</b></td><td>${r[1]}</td><td class="note">${r[2]}</td></tr>`).join('')}</tbody></table></div>
+  </div>`;
+  return c;
+}
+function overviewNode(){
+  const n=el('div','');
+  n.innerHTML=`<div class="cluebox"><h3>Time expressions are your clues</h3>
+  <p>Most tense mistakes happen because we ignore small words such as <i>yesterday</i>, <i>since</i>, <i>right now</i> or <i>while</i>. These words tell you <b>when</b> the action happens, and the tense must match. In every exercise, <b>find the clue first, then choose the verb form</b>.</p>
+  <p><b>Same verb, different clue, different tense:</b></p>
+  <div class="scroll"><table class="tbl"><thead><tr><th>Sentence</th><th>Tense</th></tr></thead><tbody>
+   <tr><td>She ___ (work) in the office <b>every day</b>.</td><td>works · <span class="pill" style="--c:var(--ps)">Present Simple</span></td></tr>
+   <tr><td>She ___ (work) in the office <b>right now</b>.</td><td>is working · <span class="pill" style="--c:var(--pc)">Present Continuous</span></td></tr>
+   <tr><td>She ___ (work) in the office <b>in 2022</b>.</td><td>worked · <span class="pill" style="--c:var(--pas)">Past Simple</span></td></tr>
+   <tr><td>She ___ (work) in the office <b>when I called</b>.</td><td>was working · <span class="pill" style="--c:var(--pac)">Past Continuous</span></td></tr>
+   <tr><td>She ___ (work) in the office <b>since 2022</b>.</td><td>has worked · <span class="pill" style="--c:var(--pp)">Present Perfect</span></td></tr>
+  </tbody></table></div>
+  <h4 style="margin-top:16px">Your 3-step routine</h4>
+  <ol><li><b>Circle the time expression</b> (<i>yesterday, since, at the moment, while, always…</i>).</li>
+  <li><b>Ask:</b> is it a routine, happening now, finished in the past, in progress at a past moment, or connected to now?</li>
+  <li><b>Build the verb form</b> and check the auxiliary: <i>do / does / did · am / is / are · was / were · have / has</i>.</li></ol>
+  <p><b>Careful:</b> some clues can go with more than one tense. <i>This week</i> (Present Continuous or Present Perfect), <i>when</i> (Past Simple or Past Continuous) and <i>for</i> (Past Simple or Present Perfect). Then read the whole sentence and decide: is the time finished, or is it still open?</p></div>
+  <div class="card"><h3>Which tense? A quick decision map</h3><ol>
+   <li>Is it finished at a specific past time (<i>yesterday, ago, in 2019</i>)? → <b>Past Simple</b></li>
+   <li>Was it in progress at a past moment, or interrupted (<i>while, when, at 8 p.m. last night</i>)? → <b>Past Continuous</b></li>
+   <li>Does it connect the past to now (<i>already, yet, ever, since, for, so far</i>)? → <b>Present Perfect</b></li>
+   <li>Is it a routine or a fact (<i>always, every day, usually</i>)? → <b>Present Simple</b></li>
+   <li>Is it happening now or temporarily (<i>now, at the moment, these days</i>)? → <b>Present Continuous</b></li></ol></div>
+  <div class="card"><h3>The five tenses at a glance</h3><div class="scroll"><table class="tbl"><thead><tr><th>Tense</th><th>Use it for</th><th>Form</th><th>Typical clues</th><th>Example</th></tr></thead><tbody>
+  ${T.map(t=>`<tr><td><span class="pill" style="--c:var(--${t.id})">${t.name}</span></td><td>${t.use}</td><td>${t.formS}</td><td>${t.cl}</td><td><i>${t.sample}</i></td></tr>`).join('')}
+  </tbody></table></div></div>`;
+  return n;
+}
+(function(){
+  const p=panels.guide;
+  p.innerHTML=`<h2>Guide</h2><p class="lead">Start with the overview and the clues, then study each tense: form, uses, common mistakes and a table of time expressions.</p>`;
+  G=subnav(p,[{label:'Overview & clues',node:overviewNode()}].concat(T.map(t=>({label:t.name,color:t.id,node:guideCard(t)}))),0);
+})();
+function openGuide(id){go('guide',false);G.sel(1+T.findIndex(t=>t.id===id));window.scrollTo({top:$('#tabs').offsetTop-4,behavior:'smooth'});}
+
+/* ---------- PRACTICE BY TENSE ---------- */
+const PR={
+ps:{
+ mc:[[`My colleague ___ to work by bus <b>every day</b>.`,['go','goes','is going'],1],
+  [`___ your manager <b>usually</b> speak Spanish at work?`,['Do','Does','Is'],1],
+  [`We ___ meetings <b>on Fridays</b>.`,[`don't have`,`doesn't have`,`aren't having`],0],
+  [`Sofía ___ a car, so she <b>always</b> takes the bus.`,[`don't have`,`doesn't have`,`hasn't`],1],
+  [`I <b>usually</b> ___ my emails before lunch.`,['checks','am checking','check'],2]],
+ gap:[`The accounting department [[opens]] (open) at 8:00 <b>every morning</b>.`,
+  `My brother [[doesn't drink|does not drink]] (not / drink) coffee <b>in the evening</b>.`,
+  `[[Do]] you [[work]] (work) <b>on weekends</b>?`,
+  `She <b>often</b> [[studies]] (study) English in the evening.`,
+  `Water [[boils]] (boil) at 100°C. It's a scientific fact.`,
+  `How <b>often</b> [[does]] he [[travel]] (travel) for work?`],
+ q:[[`Ana goes to the gym <u>three times a week</u>.`,`How often does Ana go to the gym?|How often does she go to the gym?`],
+  [`They live <u>in Cali</u>.`,`Where do they live?`],
+  [`The train leaves <u>at 6:30</u>.`,`What time does the train leave?|When does the train leave?`]],
+ err:[['She work in a bank.','She works in a bank.'],['Does he plays tennis on Sundays?','Does he play tennis on Sundays?'],['I am knowing your teacher.','I know your teacher.']]},
+pc:{
+ mc:[[`Please be quiet! The baby ___ <b>right now</b>.`,['sleeps','is sleeping','sleep'],1],
+  [`We ___ for a new office <b>at the moment</b>.`,['look','are looking','looks'],1],
+  [`What ___ you doing <b>these days</b>?`,['are','do','is'],0],
+  [`I really ___ this course. (<i>like</i> is a state verb)`,['am liking','like','likes'],1],
+  [`<b>Nowadays</b>, many people ___ from home.`,['work','are working','works'],1]],
+ gap:[`<b>Look!</b> It [[is raining|'s raining]] (rain) outside.`,
+  `I [[am not working|'m not working]] (not / work) <b>today</b>; I'm on vacation.`,
+  `[[Are]] you [[listening]] (listen) to me <b>right now</b>?`,
+  `She [[is studying|'s studying]] (study) for her exams <b>this month</b>.`,
+  `They [[are having|'re having]] (have) lunch <b>at the moment</b>.`,
+  `The company [[is growing|'s growing]] (grow) fast <b>nowadays</b>.`],
+ q:[[`I'm <u>writing a report</u> right now.`,`What are you doing right now?|What are you doing?|What are you writing right now?|What are you writing?`],
+  [`Tom is talking <u>to the manager</u>.`,`Who is Tom talking to?|Who's Tom talking to?|To whom is Tom talking?`],
+  [`They're staying <u>in a hotel</u> this week.`,`Where are they staying this week?|Where are they staying?`]],
+ err:[['They are talk to the client.','They are talking to the client.'],['What you are doing now?','What are you doing now?'],['He is wanting a new phone.','He wants a new phone.']]},
+pas:{
+ mc:[[`I ___ my first job <b>in 2019</b>.`,['start','started','was starting'],1],
+  [`___ you send the email <b>yesterday</b>?`,['Did','Do','Have'],0],
+  [`We ___ go to the party <b>last night</b>.`,[`don't`,`didn't`,`weren't`],1],
+  [`<b>When I was a child</b>, I ___ afraid of dogs.`,['am','was','were'],1],
+  [`She ___ home <b>two hours ago</b>.`,['comes','came','has come'],1]],
+ gap:[`I [[met]] (meet) my manager <b>two weeks ago</b>.`,
+  `We [[didn't go|did not go]] (not / go) to the meeting <b>yesterday</b>.`,
+  `[[Did]] she [[call]] (call) you <b>last night</b>?`,
+  `He [[was]] (be) very nervous when he [[started]] (start) the new job <b>last month</b>.`,
+  `They [[bought]] (buy) a new house <b>in 2021</b>.`,
+  `What time [[did]] the film [[finish]] (finish) <b>last night</b>?`],
+ q:[[`I visited my grandparents <u>last weekend</u>.`,`When did you visit your grandparents?|When did you visit them?`],
+  [`She bought the tickets <u>online</u>.`,`How did she buy the tickets?|Where did she buy the tickets?`],
+  [`They left <u>at midnight</u>.`,`What time did they leave?|When did they leave?`]],
+ err:[['Did you went to school yesterday?','Did you go to school yesterday?'],['She goed to the market last Sunday.','She went to the market last Sunday.'],['I have seen that film two years ago.','I saw that film two years ago.']]},
+pac:{
+ mc:[[`I ___ dinner <b>when</b> the phone rang.`,['cooked','was cooking','am cooking'],1],
+  [`What ___ you doing <b>at 9 p.m. last night</b>?`,['was','were','did'],1],
+  [`<b>While</b> she ___ a report, her colleague was answering emails.`,['wrote','was writing','writes'],1],
+  [`They ___ football <b>when</b> it started to rain.`,['were playing','played','was playing'],0],
+  [`<b>At that moment</b>, the sun ___ and the birds were singing.`,['shone','was shining','is shining'],1]],
+ gap:[`I [[was chatting]] (chat) to a colleague <b>when</b> you [[called]] (call) me.`,
+  `<b>At 8 o'clock last night</b>, we [[were watching]] (watch) a movie.`,
+  `[[Were]] you [[sleeping]] (sleep) <b>when</b> I called?`,
+  `He [[wasn't listening|was not listening]] (not / listen) <b>while</b> the teacher was explaining.`,
+  `<b>While</b> they [[were travelling|were traveling]] (travel) in Peru, they lost their passports.`,
+  `It [[was raining]] (rain) <b>all day yesterday</b>.`],
+ q:[[`I was <u>having lunch</u> when you called.`,`What were you doing when I called?|What were you doing when I called you?`],
+  [`They were talking <u>about work</u>.`,`What were they talking about?`],
+  [`Anna was reading <u>at 10 p.m. last night</u>.`,`When was Anna reading?|What time was Anna reading?|What was Anna doing at 10 p.m. last night?|What was Anna doing at 10 p.m.?`]],
+ err:[['I was work when you called.','I was working when you called.'],['They was playing in the park.','They were playing in the park.'],['I was watching TV when you were calling.','I was watching TV when you called.']]},
+pp:{
+ mc:[[`I ___ this company <b>since 2022</b>.`,['work','worked','have worked'],2],
+  [`Have you <b>ever</b> ___ to Cartagena?`,['be','been','was'],1],
+  [`She hasn't finished her report ___.`,['yet','yesterday','last week'],0],
+  [`We ___ <b>just</b> arrived at the airport.`,['have','did','are'],0],
+  [`He ___ in Bogotá <b>for five years</b>.`,['has lived','lived','is living'],0]],
+ gap:[`I [[have already sent|'ve already sent]] (<b>already</b> / send) the email.`,
+  `She [[hasn't replied|has not replied]] (not / reply) to my message <b>yet</b>.`,
+  `[[Have]] you <b>ever</b> [[tried]] (try) Colombian ajiaco?`,
+  `They [[have known|'ve known]] (know) each other <b>since 2015</b>.`,
+  `We [[have worked|'ve worked]] (work) here <b>for three years</b>.`,
+  `I [[have never seen|'ve never seen]] (<b>never</b> / see) snow.`],
+ q:[[`I've lived here <u>for ten years</u>.`,`How long have you lived here?`],
+  [`She has visited <u>three</u> countries.`,`How many countries has she visited?`],
+  [`He has been to Mexico <u>twice</u>.`,`How many times has he been to Mexico?`]],
+ err:[['I have seen him yesterday.','I saw him yesterday.'],['She has work here since 2020.','She has worked here since 2020.'],['We live in this city for six years.',`We have lived in this city for six years.|We've lived in this city for six years.`]]}
+};
+(function(){
+  const p=panels.practice;
+  p.innerHTML=`<h2>Practice by tense</h2><p class="lead">Work on one tense at a time. Underline the time expression in each sentence before you answer.</p>`;
+  const entries=T.map(t=>{
+    const n=el('div','tp');n.style.setProperty('--c',`var(--${t.id})`);
+    n.appendChild(el('div','remind',`<p><b>${t.name}</b>: ${t.use}.</p><p><b>Form:</b> ${t.formS}</p><p><b>Clues:</b> ${t.time.slice(0,5).map(r=>`<span class="pill">${r[0]}</span>`).join('')}</p>`));
+    const d=PR[t.id];
+    n.appendChild(block('A. Choose the correct answer','Circle the time expression first. Tap an option.','mc',d.mc));
+    n.appendChild(block('B. Complete the sentences','Write the verb in the correct form. The bold words are clues.','gap',d.gap));
+    n.appendChild(block('C. Write the question for the answer','Ask a question for the underlined information.','q',d.q));
+    n.appendChild(block('D. Correct the mistake','Each sentence has one mistake. Write the correct sentence.','err',d.err));
+    return {label:t.name,color:t.id,node:n};
+  });
+  subnav(p,entries,0);
+})();
+
+/* ---------- MIXED PRACTICE ---------- */
+(function(){
+  const p=panels.mixed;
+  p.innerHTML=`<h2>Mixed practice</h2><p class="lead">Now all five tenses together. There is no tense label this time: <b>find the time expression</b>, decide which tense it points to, then answer.</p>`;
+  const mk=(...bl)=>{const n=el('div','tp');bl.forEach(b=>n.appendChild(b));return n;};
+  const A=block('A. Choose the correct tense','Circle the clue in each sentence, then tap the answer.','mc',[
+   [`My sister ___ in Madrid at the moment.`,['lives','is living','has lived'],1],
+   [`We ___ to the beach last summer.`,['go','went','have gone'],1],
+   [`I ___ this book yet.`,[`don't read`,`haven't read`,`didn't read`],1],
+   [`He ___ tennis every Saturday.`,['is playing','plays','played'],1],
+   [`They ___ TV when the power went out.`,['watched','were watching','have watched'],1],
+   [`Have you ever ___ sushi?`,['eat','ate','eaten'],2],
+   [`Listen! Someone ___ at the door.`,['knocks','is knocking','knocked'],1],
+   [`She ___ her keys two days ago.`,['lost','has lost','was losing'],0],
+   [`While I ___ dinner, my brother was setting the table.`,['made','was making','am making'],1],
+   [`Prices ___ a lot recently.`,['rise','rose','have risen'],2]]);
+  const B1=block('B1. Fill in the dialogue: At the office','Complete the conversation with the correct verb forms.','dlg',[
+   `<b>Marta:</b> Hi, Andrés! You're here early. What [[are]] you [[doing]] (do) at your desk at 7:30?`,
+   `<b>Andrés:</b> I [[am finishing|'m finishing]] (finish) a report. The client [[needs]] (need) it by nine.`,
+   `<b>Marta:</b> Oh no! [[Did]] you [[start]] (start) it yesterday?`,
+   `<b>Andrés:</b> No, I [[didn't|did not]] (not). Yesterday I [[was attending]] (attend) a training all day.`,
+   `<b>Marta:</b> [[Have]] you [[had]] (have) breakfast yet?`,
+   `<b>Andrés:</b> Not yet. I [[haven't had|have not had]] (not / have) anything since last night.`,
+   `<b>Marta:</b> I usually [[bring]] (bring) snacks. Here, take a banana!`]);
+  const B2=block('B2. Fill in the dialogue: Weekend chat','Complete the conversation with the correct verb forms.','dlg',[
+   `<b>Sofía:</b> How [[was]] (be) your weekend?`,
+   `<b>Juan:</b> Great! On Saturday we [[went]] (go) to the river. While we [[were swimming]] (swim), it [[started]] (start) to rain!`,
+   `<b>Sofía:</b> Oh no! [[Did]] you [[get]] (get) wet?`,
+   `<b>Juan:</b> Yes, but we [[laughed]] (laugh) a lot. Where [[do]] you usually [[go]] (go) on weekends?`,
+   `<b>Sofía:</b> I [[am studying|'m studying]] (study) for exams these days, so I stay home.`,
+   `<b>Juan:</b> I [[have never been|'ve never been]] (never / be) so busy in my life! Let's go together next weekend.`]);
+  const B3=block('B3. Fill in the dialogue: Job interview','Complete the conversation with the correct verb forms.','dlg',[
+   `<b>Interviewer:</b> Thank you for coming. [[Have]] you [[worked]] (work) in customer service before?`,
+   `<b>Candidate:</b> Yes. I [[have worked|'ve worked]] (work) as a receptionist for three years.`,
+   `<b>Interviewer:</b> What [[did]] you [[do]] (do) before that?`,
+   `<b>Candidate:</b> I [[studied]] (study) business at university until 2021.`,
+   `<b>Interviewer:</b> Why [[are]] you [[looking]] (look) for a new job?`,
+   `<b>Candidate:</b> Because I [[want]] (want) more responsibility. Last year, while I [[was working]] (work) full time, I [[completed]] (complete) an online course.`]);
+  const C=block('C. Write the question for the answer','Write a question for the underlined information. Choose the tense from the clue.','q',[
+   [`She usually drinks tea <u>in the morning</u>.`,`When does she usually drink tea?|What time of day does she usually drink tea?`],
+   [`They are waiting <u>for the bus</u>.`,`What are they waiting for?`],
+   [`We watched the match <u>at Carlos's house</u>.`,`Where did you watch the match?|Where did they watch the match?|Where did we watch the match?`],
+   [`He was cooking <u>when the fire alarm rang</u>.`,`What was he doing when the fire alarm rang?`],
+   [`I've been to Peru <u>three times</u>.`,`How many times have you been to Peru?`],
+   [`Diana has worked here <u>since March</u>.`,`How long has Diana worked here?|Since when has Diana worked here?|How long has Diana been working here?`]]);
+  const D=block('D. Error hunt','Each sentence has one mistake with the tense or the verb form. Rewrite it correctly.','err',[
+   ['She is work at the moment.','She is working at the moment.'],
+   ['I was live in Quito in 2015.','I lived in Quito in 2015.'],
+   ['Have you finished the report yesterday?','Did you finish the report yesterday?'],
+   [`He don't like spicy food.`,`He doesn't like spicy food.|He does not like spicy food.`],
+   ['They watched TV when the lights went out.','They were watching TV when the lights went out.'],
+   [`We're study English since January.`,`We've studied English since January.|We have studied English since January.|We've been studying English since January.|We have been studying English since January.`]]);
+  const E=block('E. Story: A crazy morning','Complete the story with the correct tense. Read the clues!','gap',[
+   `Last Friday, I [[woke]] (wake) up late because my alarm [[didn't ring|did not ring]] (not / ring). While I [[was getting]] (get) dressed, my phone [[rang]] (ring). It was my boss! I [[ran]] (run) to the bus stop and [[took]] (take) a taxi instead. Now it's 11 a.m. and I [[am sitting|'m sitting]] (sit) at my desk. I [[haven't had|have not had]] (not / have) breakfast yet, but I [[have already finished|'ve already finished]] (already / finish) the report. I usually [[arrive]] (arrive) on time, so this [[was]] (be) a very strange morning!`]);
+  const F=block('F. Word order','Tap the words to build a correct sentence. Watch the time expression.','order',[
+   ['she has never visited Cusco','.'],['what were you doing when I called','?'],['I usually check my email in the morning|in the morning I usually check my email','.'],
+   [`they didn't go to the party last night|last night they didn't go to the party`,'.'],['are you working on a project at the moment','?'],['we have lived in this city since 2019','.']]);
+  subnav(p,[{label:'A. Choose',node:mk(A)},{label:'B. Dialogues',node:mk(B1,B2,B3)},{label:'C. Questions',node:mk(C)},{label:'D. Error hunt',node:mk(D)},{label:'E. Story',node:mk(E)},{label:'F. Word order',node:mk(F)}],0);
+})();
+
+/* ---------- GAMES ---------- */
+function initSprint(host){
+  const POOL=[['every day','ps'],['always','ps'],['on Mondays','ps'],['twice a week','ps'],['usually','ps'],['never (a habit)','ps'],['How often…?','ps'],['at weekends','ps'],
+   ['right now','pc'],['at the moment','pc'],['currently','pc'],['these days','pc'],['nowadays','pc'],['Look!','pc'],['Listen!','pc'],['at present','pc'],
+   ['yesterday','pas'],['last night','pas'],['two days ago','pas'],['in 2018','pas'],['when I was ten','pas'],['the other day','pas'],['last summer','pas'],['What time did…?','pas'],
+   ['while','pac'],['at 8 p.m. last night','pac'],['all day yesterday','pac'],['this time last year','pac'],['at that moment','pac'],['as I was leaving','pac'],['What were you doing…?','pac'],['at the time','pac'],
+   ['already','pp'],['yet','pp'],['just','pp'],['ever','pp'],['so far','pp'],['since 2020','pp'],['lately','pp'],['up to now','pp'],['How long have you…?','pp']];
+  let left,score,streak,right,total,best=0,timer,cur,missed,running=false,locked=false;
+  host.innerHTML=`<div class="gcard"><h3>Time Expression Sprint</h3><p>Read the time expression and choose the tense it points to. You have 60 seconds: how many can you get right? Use keys 1–5 if you are on a computer.</p><div class="gbar"><span>Time <b class="gt">60</b>s</span><span>Score <b class="gs">0</b></span><span>Streak <b class="gk">0</b></span><span>Best <b class="gb">0</b></span></div><div class="gtime"><i></i></div><div class="gstage"></div></div>`;
+  const stage=$('.gstage',host);
+  function stats(){$('.gt',host).textContent=left;$('.gs',host).textContent=score;$('.gk',host).textContent=streak;$('.gb',host).textContent=best;$('.gtime i',host).style.width=(100*left/60)+'%';}
+  function intro(){stage.innerHTML=`<button type="button" class="btn big">Start</button>`;$('button',stage).addEventListener('click',start);}
+  function start(){left=60;score=0;streak=0;right=0;total=0;missed=[];running=true;locked=false;stats();next();clearInterval(timer);timer=setInterval(()=>{left--;stats();if(left<=0)end();},1000);}
+  function next(){
+    let n;do{n=POOL[Math.floor(Math.random()*POOL.length)];}while(cur&&n===cur);cur=n;locked=false;
+    stage.innerHTML=`<div class="gword">${cur[0]}</div><div class="gopts">${T.map((t,i)=>`<button type="button" class="gopt" data-t="${t.id}" style="--c:var(--${t.id})"><kbd>${i+1}</kbd>${t.name}</button>`).join('')}</div>`;
+  }
+  function answer(id){
+    if(!running||locked)return;locked=true;total++;
+    const ok=id===cur[1];
+    if(ok){right++;streak++;score+=10+Math.min(streak,5)*2;stats();setTimeout(()=>{if(running)next();},250);}
+    else{streak=0;missed.push(cur);stats();$$('.gopt',stage).forEach(b=>{if(b.dataset.t===cur[1])b.classList.add('right');else if(b.dataset.t===id)b.classList.add('wrong');});setTimeout(()=>{if(running)next();},1100);}
+  }
+  function end(){
+    clearInterval(timer);running=false;if(score>best)best=score;stats();
+    const uniq=[];missed.forEach(m=>{if(!uniq.includes(m))uniq.push(m);});
+    stage.innerHTML=`<div class="gres"><h3>Time's up!</h3><p><b>${score}</b> points · <b>${right}</b> correct out of <b>${total}</b>${total?` (${Math.round(100*right/total)}%)`:''}.</p>${uniq.length?`<p>Review these clues:</p><ul>${uniq.map(m=>`<li><b>${m[0]}</b> → ${TB[m[1]].name}</li>`).join('')}</ul>`:'<p>Perfect! No mistakes.</p>'}<button type="button" class="btn big" id="again">Play again</button></div>`;
+    $('#again',stage).addEventListener('click',start);
+  }
+  stage.addEventListener('click',e=>{const b=e.target.closest('.gopt');if(b)answer(b.dataset.t);});
+  document.addEventListener('keydown',e=>{if(!running||host.offsetParent===null)return;const i=parseInt(e.key,10);if(i>=1&&i<=5)answer(T[i-1].id);});
+  intro();stats();
+}
+function initDetective(host){
+  const CASES=[
+   ['Tom ___ (go) to the gym every morning.','every morning','ps','goes'],
+   ['Look! The children ___ (play) in the snow.','Look!','pc','are playing'],
+   ['I ___ (see) that movie two weeks ago.','two weeks ago','pas','saw'],
+   ['At 10 p.m. last night, we ___ (watch) a series.','At 10 p.m. last night','pac','were watching'],
+   ['She ___ (already / finish) her homework.','already','pp','has already finished'],
+   ['They ___ (not / work) here in 2018.','in 2018','pas',`didn't work`],
+   ['He ___ (drive) to work when the accident happened.','when the accident happened','pac','was driving'],
+   ['We ___ (live) here since 2020.','since 2020','pp','have lived'],
+   ['My boss ___ (usually / arrive) at 8:00.','usually','ps','usually arrives'],
+   ["I can't talk now; I ___ (drive).",'now','pc','am driving'],
+   ['While Ana ___ (cook), her sister set the table.','While','pac','was cooking'],
+   ['How long ___ you ___ (know) him?','How long','pp','have you known']];
+  let q,i,score,lock;
+  host.innerHTML=`<div class="gcard"><h3>Tense Detective</h3><p>Every sentence hides a clue. Find it, then name the tense the clue points to.</p><div class="gstage"></div></div>`;
+  const stage=$('.gstage',host);
+  function start(){q=shuffle(CASES);i=0;score=0;show();}
+  function show(){
+    if(i>=q.length){stage.innerHTML=`<div class="gres"><h3>Case closed!</h3><p>You solved <b>${score}</b> of <b>${q.length}</b> cases.</p><button type="button" class="btn big" id="again">New investigation</button></div>`;$('#again',stage).addEventListener('click',start);return;}
+    lock=false;
+    stage.innerHTML=`<p>Case ${i+1} of ${q.length} · Score ${score}</p><div class="gsent">${q[i][0]}</div><div class="gopts">${T.map(t=>`<button type="button" class="gopt" data-t="${t.id}" style="--c:var(--${t.id})">${t.name}</button>`).join('')}</div><div class="gfb" aria-live="polite"></div>`;
+  }
+  stage.addEventListener('click',e=>{
+    const b=e.target.closest('.gopt');
+    if(b&&!lock){
+      lock=true;const c=q[i],ok=b.dataset.t===c[2];if(ok)score++;
+      $$('.gopt',stage).forEach(x=>{x.disabled=true;if(x.dataset.t===c[2])x.classList.add('right');else if(x===b)x.classList.add('wrong');});
+      $('.gsent',stage).innerHTML=c[0].replace('___',`<b>${c[3]}</b>`);
+      $('.gfb',stage).innerHTML=`${ok?'✔ Correct.':'Not this time.'} Clue: <mark>${c[1]}</mark> → <b>${TB[c[2]].name}</b>: ${WHY[c[2]]}.<br><button type="button" class="btn" data-nx>${i+1>=q.length?'See result':'Next case'}</button>`;
+    }
+    if(e.target.closest('[data-nx]')){i++;show();}
+  });
+  start();
+}
+function initSpeed(host){
+  const POOL=[`She always [[drinks]] (drink) coffee at breakfast.`,`Right now, they [[are studying|'re studying]] (study) in the library.`,`We [[went]] (go) to Cartagena last year.`,`I [[was cooking]] (cook) when you called.`,
+   `He [[has lost|'s lost]] (lose) his wallet.`,`My parents [[don't watch|do not watch]] (not / watch) TV in the morning.`,`Look! The bus [[is coming|'s coming]] (come).`,`They [[didn't like|did not like]] (not / like) the movie.`,
+   `What [[were]] you doing at 7 p.m. yesterday? (be)`,`She [[has lived|'s lived]] (live) here since 2015.`,`The store [[opens]] (open) at nine every day.`,`We [[are having|'re having]] (have) a great time at the moment.`,
+   `I [[saw]] (see) Ana two days ago.`,`While he [[was driving]] (drive), the radio broke.`,`[[Have]] you finished the exercise yet? (have)`,`My sister [[doesn't eat|does not eat]] (not / eat) meat.`,
+   `I [[have never tried|'ve never tried]] (never / try) sushi.`,`Yesterday we [[played]] (play) football in the park.`,`How often [[do]] you exercise? (do)`,`They [[were sleeping]] (sleep) when the storm started.`];
+  let q,i,score,left,timer,running=false,lock=false,best=0,right,total;
+  host.innerHTML=`<div class="gcard"><h3>Speed Gap</h3><p>Type the missing verb form and press Enter. You have 90 seconds. Use the clue in the sentence!</p><div class="gbar"><span>Time <b class="gt">90</b>s</span><span>Score <b class="gs">0</b></span><span>Best <b class="gb">0</b></span></div><div class="gtime"><i></i></div><div class="gstage"></div></div>`;
+  const stage=$('.gstage',host);
+  function stats(){$('.gt',host).textContent=left;$('.gs',host).textContent=score;$('.gb',host).textContent=best;$('.gtime i',host).style.width=(100*left/90)+'%';}
+  function intro(){left=90;score=0;stats();stage.innerHTML=`<button type="button" class="btn big">Start</button>`;$('button',stage).addEventListener('click',start);}
+  function start(){q=shuffle(POOL);i=0;score=0;left=90;right=0;total=0;running=true;stats();show();clearInterval(timer);timer=setInterval(()=>{left--;stats();if(left<=0)end();},1000);}
+  function show(){
+    if(i>=q.length)i=0;lock=false;
+    stage.innerHTML=`<div class="gsent">${gapify(q[i])}</div><p class="gfb" aria-live="polite"></p>`;
+    const inp=$('input',stage);inp.classList.add('gin');inp.style.width='';inp.focus();
+    inp.addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();submit(inp);}});
+  }
+  function submit(inp){
+    if(!running||lock)return;lock=true;total++;
+    const ok=inp.dataset.ans.split('|').map(norm).includes(norm(inp.value));
+    if(ok){right++;score+=10;inp.classList.add('ok');stats();$('.gfb',stage).textContent='✔ +10';setTimeout(()=>{if(running){i++;show();}},400);}
+    else{inp.classList.add('bad');$('.gfb',stage).innerHTML=`Answer: <b>${inp.dataset.ans.split('|')[0]}</b>`;setTimeout(()=>{if(running){i++;show();}},1300);}
+  }
+  function end(){
+    clearInterval(timer);running=false;if(score>best)best=score;stats();
+    stage.innerHTML=`<div class="gres"><h3>Time's up!</h3><p><b>${score}</b> points · <b>${right}</b> correct out of <b>${total}</b>.</p><button type="button" class="btn big" id="again">Play again</button></div>`;
+    $('#again',stage).addEventListener('click',start);
+  }
+  intro();
+}
+(function(){
+  const p=panels.games;
+  p.innerHTML=`<h2>Games</h2><p class="lead">Quick rounds to test your speed and your eye for clues. Play alone or challenge a classmate to beat your best score.</p>`;
+  const a=el('div'),b=el('div'),c=el('div');
+  subnav(p,[{label:'Time Expression Sprint',node:a},{label:'Tense Detective',node:b},{label:'Speed Gap',node:c}],0);
+  initSprint(a);initDetective(b);initSpeed(c);
+})();
+
+/* ---------- SPEAKING ---------- */
+const SPK={
+ps:[`What do you usually do on weekends?`,`How often do you check social media?`,`What does your morning routine look like?`,`Where does your family usually go on holiday?`,`What do you never do on Sundays?`,`How does your best friend spend a typical day?`],
+pc:[`What are you doing this week that is different from usual?`,`Are you learning anything new these days?`,`What are people talking about on social media nowadays?`,`Who is sitting next to you? What are they doing right now?`,`What is happening in your city at the moment?`,`What are you planning for next weekend?`],
+pas:[`What did you do last weekend?`,`Where did you go on your last holiday?`,`What was your first day at school or at work like?`,`When did you last cook for someone? What did you make?`,`What did you have for dinner yesterday?`,`Tell me about a time you learned something new.`],
+pac:[`What were you doing at 8 p.m. last night?`,`What were you doing when you heard some great news?`,`Think of a party you went to. What were people doing?`,`What was happening the last time you were late?`,`Where were you living five years ago? What were you studying or doing?`,`Tell me about a time something surprising happened while you were doing something ordinary.`],
+pp:[`Have you ever travelled abroad? Where have you been?`,`What is the most interesting thing you have done this year?`,`How long have you studied English?`,`Have you ever tried a food you didn't like?`,`What have you already done today? What haven't you done yet?`,`What has changed in your life in the last few years?`],
+mix:[`Tell me about your job or your studies: what you do now, what you did before and what you have achieved so far.`,`Describe your day yesterday. What were you doing at key times?`,`What are you doing these days to improve your English? What have you done so far?`,`Talk about a person you admire: what they do, what happened in their life and what they have achieved.`,`Describe a trip: where you went, what you were doing when something surprising happened and how many times you have been there.`,`Compare your life now with your life five years ago.`,`Describe your favourite place: what people usually do there, what you did on your last visit and what you are planning to do next.`,`Tell a short story about a bad day: what happened and what you were doing at the time.`]};
+const TAGS={ps:'Present Simple',pc:'Present Continuous',pas:'Past Simple',pac:'Past Continuous',pp:'Present Perfect',mix:'Mixed tenses'};
+(function(){
+  const p=panels.speak;
+  p.innerHTML=`<h2>Speaking</h2><p class="lead">Work with a partner. Ask a question, listen, and ask a follow-up. Use time expressions in your answers.</p>`;
+  p.appendChild(el('div','card',`<h3>How to answer</h3><ol><li>Answer with a <b>full sentence</b>.</li><li>Use at least one <b>time expression</b> (<i>every day, right now, last year, while, since…</i>).</li><li>Add a <b>detail</b>: who, where, why or how.</li><li>Ask back: <b>“And you?”</b></li></ol>`));
+  const wrap=el('div');p.appendChild(wrap);
+  const chips=[['all','All tenses',null]].concat(Object.keys(TAGS).map(k=>[k,TAGS[k],k==='mix'?null:k]));
+  const nav=el('div','sub');let filt='all';const card=el('div','qcard');
+  chips.forEach(ch=>{const b=el('button','subbtn'+(ch[0]==='all'?' on':''),ch[1]);b.type='button';if(ch[2])b.style.setProperty('--c',`var(--${ch[2]})`);
+    b.addEventListener('click',()=>{filt=ch[0];$$('.subbtn',nav).forEach(x=>x.classList.remove('on'));b.classList.add('on');nextQ();});nav.appendChild(b);});
+  wrap.appendChild(nav);wrap.appendChild(card);
+  let pool=[],last=null,tmr=null;
+  function nextQ(){
+    pool=[];Object.keys(SPK).forEach(k=>{if(filt==='all'||filt===k)SPK[k].forEach(q=>pool.push([k,q]));});
+    let n;do{n=pool[Math.floor(Math.random()*pool.length)];}while(pool.length>1&&last===n[1]);last=n[1];
+    clearInterval(tmr);
+    const k=n[0];card.style.setProperty('--c',k==='mix'?'var(--brand)':`var(--${k})`);
+    const clues=k==='mix'?'Use different tenses in your answer.':'Clues to use: '+TB[k].time.slice(0,4).map(r=>`<span class="pill">${r[0]}</span>`).join('');
+    card.innerHTML=`<div class="tagline">${TAGS[k]}</div><div class="qtxt">${n[1]}</div><p>${clues}</p><div class="gtime"><i style="width:100%"></i></div><div class="bar" style="justify-content:center"><button type="button" class="btn" data-a="new">New question</button><button type="button" class="btn ghost" data-a="timer">Start 1-minute timer</button></div><p class="gfb" aria-live="polite"></p>`;
+  }
+  card.addEventListener('click',e=>{
+    const a=e.target.closest('[data-a]');if(!a)return;
+    if(a.dataset.a==='new')nextQ();
+    if(a.dataset.a==='timer'){
+      let s=60;const bar=$('.gtime i',card),fb=$('.gfb',card);clearInterval(tmr);bar.style.width='100%';fb.textContent='Speak! 60 seconds…';
+      tmr=setInterval(()=>{s--;bar.style.width=(100*s/60)+'%';fb.textContent=s>0?`Speak! ${s} seconds…`:'';if(s<=0){clearInterval(tmr);fb.textContent='Time! Now your partner asks a follow-up question.';}},1000);
+    }
+  });
+  nextQ();
+  const all=el('div');all.appendChild(el('h3','', 'All questions'));all.firstChild.style.margin='18px 0 8px';
+  Object.keys(SPK).forEach(k=>{all.appendChild(el('details','',`<summary>${TAGS[k]}</summary><ul>${SPK[k].map(q=>`<li>${q}</li>`).join('')}</ul>`));});
+  p.appendChild(all);
+  const ch=el('div','');ch.innerHTML=`<h3 style="margin:18px 0 8px">Pair-work challenges</h3>
+  <details><summary>Two truths and a lie</summary><ul><li>Write three sentences about yourself, each in a <b>different tense</b>: two true, one false.</li><li>Your partner asks follow-up questions and guesses the lie.</li><li>Use time expressions: <i>every week, right now, last year, while I was…, since…</i></li></ul></details>
+  <details><summary>Story chain</summary><ul><li>Start: “Yesterday, I was walking to work when…”</li><li>Each person adds one sentence and must use a <b>different tense</b> from the last sentence.</li><li>Keep the story going for two minutes.</li></ul></details>
+  <details><summary>Mini interview</summary><ul><li>Student A is an interviewer, Student B is a candidate for a job or a scholarship.</li><li>A asks <b>one question in each of the five tenses</b>. B answers in full sentences with a time expression.</li><li>Swap roles. Who used the clues best?</li></ul></details>
+  <details><summary>Find someone who…</summary><ul><li>Walk around the class and find someone who: <i>has visited another country · is learning something new these days · was sleeping at midnight last night · always drinks coffee in the morning · started a new hobby last year</i>.</li><li>Ask the right question for each tense.</li></ul></details>`;
+  p.appendChild(ch);
+})();
+
+go('warm',false);renderScore();
+})();
+</script>
+</body>
+</html>
